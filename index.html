@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dedar · Sindhi in Devanagari</title>
+<meta name="description" content="Learn to read Sindhi in Devanagari script, with every letter next to its Arabic-script twin.">
+<meta name="theme-color" content="#23306e">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-display:swap;src:url(atkinson-hyperlegible-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-display:swap;src:url(atkinson-hyperlegible-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-weight:600;font-display:swap;src:url(bricolage-grotesque-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-weight:800;font-display:swap;src:url(bricolage-grotesque-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Noto Naskh Arabic";font-weight:400;font-display:swap;src:url(noto-naskh-arabic-arabic-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Noto Naskh Arabic";font-weight:600;font-display:swap;src:url(noto-naskh-arabic-arabic-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Noto Sans Devanagari";font-weight:400;font-display:swap;src:url(noto-sans-devanagari-devanagari-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Noto Sans Devanagari";font-weight:600;font-display:swap;src:url(noto-sans-devanagari-devanagari-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Noto Sans Devanagari";font-weight:700;font-display:swap;src:url(noto-sans-devanagari-devanagari-700-normal.woff2) format("woff2")}
+html{color-scheme:light}
+:root{padding-top:env(safe-area-inset-top,0px)}
+body{margin:0}
+/* Layout: app shell. Sticky top bar, one screen at a time, fixed bottom nav. Ajrak band as the brand mark. */
+:root{
+  --bg:#f3f4f9; --surface:#ffffff; --fg:#161a2e; --muted:#5a6080; --line:#dde0ec;
+  --indigo:#23306e; --madder:#a8232d; --ochre:#b67a10; --ink:#0d1020; --good:#1f7a4a; --good-soft:#e2f3ea;
+  --a-soft:#e6e9f7; --b-soft:#f8e5e6; --c-soft:#f8eedb;
+  --special:#a8232d; --special-soft:#fbe9ea; --shadow:rgba(13,16,32,.12);
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --dev:"Noto Sans Devanagari", "Nirmala UI", "Mangal", sans-serif;
+  --arab:"Noto Naskh Arabic", "Segoe UI", "Arial", serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1120; --surface:#171b30; --fg:#e8eaf6; --muted:#a2a8c8; --line:#2a3050;
+  --indigo:#9aa8ff; --madder:#ff8a8f; --ochre:#f0b850; --ink:#05060d; --good:#6fd6a0; --good-soft:#163527;
+  --a-soft:#1f2650; --b-soft:#3a1c24; --c-soft:#36290f;
+  --special:#ff8a8f; --special-soft:#3a1c24; --shadow:rgba(0,0,0,.45); color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1120; --surface:#171b30; --fg:#e8eaf6; --muted:#a2a8c8; --line:#2a3050;
+  --indigo:#9aa8ff; --madder:#ff8a8f; --ochre:#f0b850; --ink:#05060d; --good:#6fd6a0; --good-soft:#163527;
+  --a-soft:#1f2650; --b-soft:#3a1c24; --c-soft:#36290f;
+  --special:#ff8a8f; --special-soft:#3a1c24; --shadow:rgba(0,0,0,.45); color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55}
+h1,h2,h3{font-family:var(--display);line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(2rem,7vw,2.8rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.55rem;font-weight:800}
+h3{font-size:1.15rem;font-weight:700}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ochre);outline-offset:2px}
+.dev{font-family:var(--dev)}
+.ar{font-family:var(--arab);unicode-bidi:isolate}
+.muted{color:var(--muted)}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.tr{font-weight:400;color:var(--muted);white-space:nowrap}
+.tr .ar{font-size:1.08em}
+
+/* Shell */
+.band{height:14px;background-color:var(--indigo);
+  background-image:radial-gradient(circle at 50% 50%, var(--madder) 0 3px, transparent 3.5px),
+    conic-gradient(from 45deg at 50% 50%, var(--ink) 0 25%, transparent 0 50%, var(--ink) 0 75%, transparent 0);
+  background-size:14px 14px,14px 14px}
+.appbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);box-shadow:0 1px 0 var(--line)}
+.appbar-in{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px;min-height:56px}
+.back{width:40px;height:40px;border-radius:12px;border:0;background:var(--bg);cursor:pointer;font-size:1.2rem;flex:none}
+.appbar-title{font-family:var(--display);font-weight:800;font-size:1.1rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.appbar-step{margin-left:auto;font-size:.85rem;color:var(--muted);font-weight:700;white-space:nowrap}
+.view{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 120px;display:flex;flex-direction:column;gap:18px}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);box-shadow:0 -1px 0 var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.nav-in{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.nav button{border:0;background:none;cursor:pointer;padding:8px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.nav button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav button .pill{padding:3px 16px;border-radius:99px;display:grid;place-items:center}
+.nav button.on{color:var(--indigo)}
+.nav button.on .pill{background:var(--a-soft)}
+
+/* Cards and buttons */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.btn{font-weight:700;border-radius:14px;padding:12px 18px;border:2px solid var(--line);background:var(--surface);cursor:pointer;text-align:center}
+.btn.primary{background:var(--indigo);border-color:var(--indigo);color:var(--surface)}
+.btn.big{font-size:1.08rem;padding:14px 18px;width:100%}
+.btn.soft{background:var(--a-soft);border-color:transparent;color:var(--indigo)}
+.btn.quizb{border-color:var(--ochre);background:var(--c-soft)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Home */
+.pair{display:flex;align-items:center;gap:12px}
+.pair .big{font-family:var(--dev);font-size:3.6rem;line-height:1;color:var(--indigo);font-weight:600}
+.pair .big-ar{font-family:var(--arab);font-size:2.9rem;line-height:1;color:var(--madder)}
+.pair .eq{font-size:1.4rem;color:var(--muted)}
+.lede{font-size:1.08rem;color:var(--muted);max-width:52ch}
+.bar{height:12px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--indigo),var(--madder),var(--ochre));transition:width .4s ease}
+.prog-meta{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.next-up{display:flex;flex-direction:column;gap:4px}
+.next-up b{font-family:var(--display);font-size:1.3rem}
+.tour-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.tour-item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--bg);border:0;border-radius:14px;padding:12px;cursor:pointer}
+.tour-item .n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;border:2px solid var(--indigo);color:var(--indigo);flex:none}
+.tour-item.seen .n{background:var(--indigo);color:var(--surface)}
+.tour-item .t{display:flex;flex-direction:column;min-width:0}
+.tour-item .t small{color:var(--muted)}
+.tour-item .go{margin-left:auto;color:var(--indigo);font-weight:700}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fact{background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:2px;min-width:0;cursor:pointer}
+.fact:hover{border-color:var(--indigo)}
+.fact b{font-family:var(--display);font-size:1.2rem;font-variant-numeric:tabular-nums}
+.fact span{font-size:.85rem;color:var(--muted)}
+.fact .cue{color:var(--indigo);font-weight:700;margin-top:4px}
+@media (max-width:480px){.facts{grid-template-columns:1fr}}
+.paused{background:var(--good-soft);border:2px solid var(--good);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.paused b{font-family:var(--display);font-size:1.15rem}
+
+/* Tour */
+.dots{display:flex;gap:6px;justify-content:center}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--indigo);width:26px;border-radius:99px}
+.stages{display:flex;flex-direction:column;gap:10px}
+.stage{border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.stage.a{background:var(--a-soft)} .stage.b{background:var(--b-soft)} .stage.c{background:var(--c-soft)}
+.stage .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.stage .tag{font-family:var(--display);font-weight:800;font-size:1.6rem}
+.a-c{color:var(--indigo)} .b-c{color:var(--madder)} .c-c{color:var(--ochre)}
+.stage .name{font-weight:700;font-size:1.08rem}
+.stage small{color:var(--muted);font-size:.86rem;font-variant-numeric:tabular-nums}
+.stage .ex{background:var(--surface);border-radius:10px;padding:8px 10px;font-size:.95rem}
+.stage .ex .dev{font-size:1.3rem}
+.stage .ex .ar{font-size:1.2rem}
+.split{display:flex;height:44px;border-radius:12px;overflow:hidden;font-weight:700;font-size:.85rem}
+.split div{display:grid;place-items:center;color:var(--surface);min-width:0}
+.split .a{background:var(--indigo)} .split .b{background:var(--madder)} .split .c{background:var(--ochre)}
+.why{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.why li{display:flex;gap:10px}
+.why li b.k{font-family:var(--display);flex:none;width:1.4em}
+.recipe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;counter-reset:r}
+.recipe div{background:var(--bg);border-radius:12px;padding:12px;font-size:.92rem;display:flex;flex-direction:column;gap:2px}
+.recipe div::before{counter-increment:r;content:counter(r);font-family:var(--display);font-weight:800;color:var(--madder);font-size:1.3rem}
+@media (max-width:560px){.recipe{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cmds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media (max-width:560px){.cmds{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cmd{display:flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--surface);border:2px solid var(--indigo);border-radius:14px;padding:12px;cursor:pointer;text-align:left}
+.cmd:hover{background:var(--a-soft)}
+.cmd b{font-family:var(--display);font-weight:800;color:var(--indigo);font-size:1.05rem}
+.cmd span{font-size:.86rem;color:var(--muted)}
+
+/* Mouth diagrams */
+.key svg{width:100%;max-width:520px;height:auto;margin:0 auto;display:block}
+.face{fill:none;stroke:var(--muted);stroke-width:1.5;stroke-linecap:round;opacity:.55}
+.roof{fill:none;stroke:var(--muted);stroke-width:2.5;stroke-linecap:round}
+.tongue-fill{fill:var(--b-soft);stroke:var(--madder);stroke-width:2}
+.tooth{fill:var(--surface);stroke:var(--muted);stroke-width:1.5}
+.lip{fill:none;stroke:var(--fg);stroke-width:2.5;stroke-linecap:round}
+.hit{fill:var(--ochre)}
+.ring{fill:none;stroke:var(--ochre);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{from{opacity:.9;transform:scale(.6)}to{opacity:0;transform:scale(2.2)}}
+.lbl{font-family:var(--body);font-size:8px;font-weight:700;fill:var(--fg)}
+.lbl.t{fill:var(--madder)}
+.lead{stroke:var(--muted);stroke-width:.8;fill:none}
+.stations{display:flex;flex-direction:column}
+.st{display:flex;align-items:center;gap:14px;padding-block:12px;border-top:1px solid var(--line)}
+.st:first-child{border-top:0}
+.st svg{width:120px;flex:none;height:auto}
+.st .txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.st .ltr{font-family:var(--dev);font-size:1.6rem;font-weight:600;line-height:1.2}
+.st .ltr .ar{font-size:1.3rem;color:var(--madder);font-weight:400}
+.st small{font-size:.9rem;color:var(--muted)}
+.st .go{align-self:flex-start;background:none;border:0;padding:2px 0;color:var(--indigo);font-weight:700;font-size:.9rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.arrow{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.arrow i{flex:1;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--indigo),var(--madder))}
+
+/* Specials */
+.specials{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sp{background:var(--special-soft);border-radius:16px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.sp .from{font-family:var(--dev);font-size:1.3rem;color:var(--muted)}
+.sp .to{font-family:var(--dev);font-size:2.8rem;line-height:1.2;color:var(--special);font-weight:600}
+.sp .to-ar{font-family:var(--arab);font-size:1.6rem}
+.sp .arr{font-size:.85rem;color:var(--muted)}
+@media (min-width:600px){.specials{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Outline */
+.ol-stage{display:flex;flex-direction:column;gap:2px;padding-top:6px}
+.ol-stage h3{font-size:1.1rem}
+.ol-row{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:start;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px;cursor:pointer}
+.ol-row:hover{border-color:var(--indigo)}
+.ol-num{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-weight:700;border:2px solid var(--line);font-variant-numeric:tabular-nums}
+.ol-row.done .ol-num{color:var(--surface)}
+.ol-row.a.done .ol-num{background:var(--indigo);border-color:var(--indigo)}
+.ol-row.b.done .ol-num{background:var(--madder);border-color:var(--madder)}
+.ol-row.c.done .ol-num{background:var(--ochre);border-color:var(--ochre)}
+.ol-row.cur{border:2px solid var(--fg)}
+.ol-txt{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ol-txt b{font-size:1.02rem;line-height:1.35}
+.chips{display:flex;flex-wrap:wrap;gap:4px 6px}
+.lc{font-family:var(--dev);font-size:1.05rem;background:var(--bg);border-radius:8px;padding:1px 7px;white-space:nowrap}
+.lc .ar{font-size:.95rem;color:var(--madder)}
+.ol-min{font-size:.88rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:6px}
+
+/* Lesson */
+.rail{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.chip{flex:none;font-weight:700;font-variant-numeric:tabular-nums;width:40px;height:40px;border-radius:12px;border:2px solid var(--line);background:var(--surface);cursor:pointer}
+.chip.done{color:var(--surface)}
+.chip.a.done{background:var(--indigo);border-color:var(--indigo)}
+.chip.b.done{background:var(--madder);border-color:var(--madder)}
+.chip.c.done{background:var(--ochre);border-color:var(--ochre)}
+.chip.on{border-color:var(--fg);box-shadow:0 0 0 2px var(--fg)}
+.lesson{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.lesson-head{padding:18px 18px 14px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line)}
+.lesson-head.a{background:var(--a-soft)} .lesson-head.b{background:var(--b-soft)} .lesson-head.c{background:var(--c-soft)}
+.lesson-head h2{font-size:1.5rem}
+.lesson-head .tr{font-size:1.05rem;white-space:normal}
+.lesson-head .hint{color:var(--muted);font-size:.98rem}
+.lesson-body{padding:18px;display:flex;flex-direction:column;gap:22px}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 10px;border-bottom:2px solid var(--line)}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.d{font-family:var(--dev);font-size:2.2rem;line-height:1.3;font-weight:600;width:32%}
+td.a{font-size:1.9rem;line-height:1.3;width:28%;color:var(--madder)}
+td.s{font-size:1rem;color:var(--muted)}
+tr.special td{background:var(--special-soft)}
+tr.special td.d{color:var(--special)}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--special);color:var(--surface);border-radius:99px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.block{display:flex;flex-direction:column;gap:10px}
+.block h4{margin:0;font-family:var(--display);font-size:1rem;font-weight:800;color:var(--muted);letter-spacing:.04em}
+.tricks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.tricks li{display:flex;gap:10px;align-items:flex-start}
+.tricks li::before{content:"✦";color:var(--ochre);flex:none;line-height:1.55}
+.tricks .dev{font-size:1.25rem}
+.tricks .ar{font-size:1.15rem}
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.word{border:2px dashed var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.word .w-d{font-family:var(--dev);font-size:2rem;font-weight:600;line-height:1.3}
+.word .w-a{font-family:var(--arab);font-size:1.5rem;color:var(--madder)}
+.word .w-m{font-size:.92rem;color:var(--muted)}
+.reveal{font-size:.95rem;font-weight:700;align-self:flex-start;background:var(--a-soft);border:0;border-radius:10px;padding:6px 12px;color:var(--indigo);cursor:pointer}
+.lesson-foot{padding:16px 18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.toolbar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.tool{border:2px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0;font-size:.8rem;font-weight:700;min-width:0}
+.tool .i{font-size:1.15rem;line-height:1.3}
+.tool:disabled{opacity:.35;cursor:default}
+.tool.q{border-color:var(--ochre);background:var(--c-soft)}
+
+/* Quiz */
+.quiz{border-top:3px solid var(--ochre);background:var(--c-soft);padding:18px;display:flex;flex-direction:column;gap:14px}
+.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.quiz-top b{font-family:var(--display);font-size:1.15rem}
+.quiz-top span{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.q-prompt{font-family:var(--dev);font-size:3.2rem;font-weight:600;line-height:1.2;text-align:center;background:var(--surface);border-radius:14px;padding:10px}
+.q-ask{text-align:center;font-weight:700}
+.q-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.q-opt{font-family:var(--arab);font-size:1.8rem;line-height:1.5;background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:8px;cursor:pointer;min-width:0}
+.q-opt:hover:not(:disabled){border-color:var(--indigo)}
+.q-opt.right{border-color:var(--good);background:var(--good-soft)}
+.q-opt.wrong{border-color:var(--madder);background:var(--special-soft)}
+.q-opt:disabled{cursor:default}
+.q-msg{text-align:center;font-weight:700;min-height:1.5em}
+.q-msg.right{color:var(--good)} .q-msg.wrong{color:var(--madder)}
+.q-end{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
+.q-end .score{font-family:var(--display);font-size:2.4rem;font-weight:800}
+
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:12px 18px;border-radius:14px;font-weight:700;max-width:calc(100% - 32px);box-shadow:0 8px 24px var(--shadow);z-index:10;text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="band" aria-hidden="true"></div>
+<header class="appbar"><div class="appbar-in" id="appbar"></div></header>
+<main class="view" id="view" aria-live="polite"></main>
+<nav class="nav" aria-label="Main"><div class="nav-in" id="nav"></div></nav>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+const S = t=>`<bdi class="ar" dir="rtl" lang="sd">${t}</bdi>`;
+const D = t=>`<span class="dev">${t}</span>`;
+const TR = (sd,dv)=>`<span class="tr">(${S(sd)} · ${D(dv)})</span>`;
+
+const STAGES = {
+ a:{name:"Consonants", sd:"حرفِ صحيح", dv:"व्यंजन", cls:"a-c", color:"var(--indigo)"},
+ b:{name:"Vowels", sd:"حرفِ علت", dv:"स्वर", cls:"b-c", color:"var(--madder)"},
+ c:{name:"Reading", sd:"پڙهڻ", dv:"पढ़णु", cls:"c-c", color:"var(--ochre)"}
+};
+const LESSONS = [
+ {stage:"a", min:10, title:"Throat group", sd:"ڳلو", dv:"ॻलो", hint:"Back of your tongue touches the back of the roof of your mouth.",
+  letters:[["क","ڪ","ka"],["ख","ک","kha"],["ग","گ","ga"],["ॻ","ڳ","Sindhi g",1],["घ","گھ","gha"],["ङ","ڱ","nga"]],
+  tricks:[`Line underneath = Sindhi extra letter: ${D("ग")} ${S("(گ)")} becomes ${D("ॻ")} ${S("(ڳ)")}.`,
+          `The h-letters ${D("ख")} ${S("(ک)")} and ${D("घ")} ${S("(گھ)")} are <b>new shapes</b>, not "letter + h". Memorize them as pictures.`],
+  wordsLabel:"Spot the lesson letter", words:[["घरु","گھرُ","home"],["ॻोठु","ڳوٺُ","village"]]},
+ {stage:"a", min:10, title:"Palate group", sd:"وات جي ڇت", dv:"वात जी छत", hint:"Middle of your tongue touches the hard roof of your mouth.",
+  letters:[["च","چ","cha"],["छ","ڇ","chha"],["ज","ج","ja"],["ॼ","ڄ","Sindhi j",1],["झ","جھ","jha"],["ञ","ڃ","nya"]],
+  tricks:[`Same trick again: ${D("ज")} ${S("(ج)")} with a line underneath is ${D("ॼ")} ${S("(ڄ)")}.`,
+          `${D("ञ")} ${S("(ڃ)")} is rare. Just recognize it. Don't drill it.`],
+  wordsLabel:"Spot the lesson letter", words:[["मछी","مڇي","fish"],["ॼाणु","ڄاڻُ","knowledge"]]},
+ {stage:"a", min:10, title:"Tongue-curl group", sd:"مُڙيل ڄڀ", dv:"मुड़ियल ॼिभ", hint:"Curl your tongue tip back and tap the roof of your mouth.",
+  letters:[["ट","ٽ","ṭa"],["ठ","ٺ","ṭha"],["ड","ڊ","ḍa"],["ॾ","ڏ","Sindhi d",1],["ढ","ڍ","ḍha"],["ण","ڻ","ṇa"]],
+  tricks:[`Line underneath again: ${D("ड")} ${S("(ڊ)")} becomes ${D("ॾ")} ${S("(ڏ)")}.`,
+          `${D("ण")} ${S("(ڻ)")} is the n in ${S("پاڻي")}. You use it every day.`],
+  wordsLabel:"Spot the lesson letter", words:[["टोपी","ٽوپي","cap"],["ॾाॾो","ڏاڏو","grandfather"]]},
+ {stage:"a", min:10, title:"Teeth group", sd:"ڏند", dv:"ॾंद", hint:"Tongue tip touches the back of your upper teeth.",
+  letters:[["त","ت","ta"],["थ","ٿ","tha"],["द","د","da"],["ध","ڌ","dha"],["न","ن","na"]],
+  tricks:[`${D("ट")} ${S("(ٽ)")} has a <b>round hook</b>. ${D("त")} ${S("(ت)")} has a <b>flat crossbar</b>.`,
+          `${D("थ")} ${S("(ٿ)")} and ${D("ध")} ${S("(ڌ)")} have a <b>gap in the top line</b>. Look for the gap.`],
+  wordsLabel:"Spot the lesson letter", words:[["धरती","ڌرتي","earth"],["थधो","ٿڌو","cold"]]},
+ {stage:"a", min:10, title:"Lip group", sd:"چپ", dv:"चप", hint:"Only your lips do the work.",
+  letters:[["प","پ","pa"],["फ","ڦ","pha"],["ब","ب","ba"],["ॿ","ٻ","Sindhi b",1],["भ","ڀ","bha"],["म","م","ma"]],
+  tricks:[`Last extra letter: ${D("ब")} ${S("(ب)")} with a line underneath is ${D("ॿ")} ${S("(ٻ)")}. You now know all 4.`,
+          `${D("फ")} ${S("(ڦ)")} is ${D("प")} ${S("(پ)")} with a <b>curl on the right</b>.`],
+  wordsLabel:"Spot the lesson letter", words:[["ॿारु","ٻارُ","child"],["भाउ","ڀاءُ","brother"]]},
+ {stage:"a", min:10, title:"The rest", sd:"باقي اکر", dv:"बाक़ी अखर", hint:"Letters that don't belong to one mouth group. Easy ones.",
+  letters:[["य","ي","ya"],["र","ر","ra"],["ल","ل","la"],["व","و","va"],["स","س","sa"],["श","ش","sha"],["ह","ه","ha"]],
+  tricks:[`${D("र")} ${S("(ر)")} is tiny and changes shape with vowels: ${D("रु")} ${S("(رُ)")}. Watch it.`,
+          `${D("स")} ${S("(س)")} has a full top line. ${D("श")} ${S("(ش)")} has a <b>gap</b> in it.`],
+  wordsLabel:"Spot the lesson letter", words:[["यारु","يارُ","friend"],["हथु","هٿُ","hand"]]},
+ {stage:"a", min:8, title:"Dotted letters", sd:"نقطي وارا اکر", dv:"नुक़्ते वारा अखर", hint:"A dot underneath = a borrowed or extra sound.",
+  letters:[["ड़","ڙ","ṛa"],["ज़","ز","za"],["फ़","ف","fa"],["ख़","خ","kha (throaty)"],["ग़","غ","gha (throaty)"],["क़","ق","qa"]],
+  tricks:[`Dot underneath = same base letter, new sound: ${D("ज")} ${S("(ج)")} becomes ${D("ज़")} ${S("(ز)")}.`,
+          `Don't mix up the <b>dot</b> (borrowed sound) with the <b>line</b> (Sindhi extra letter).`],
+  wordsLabel:"Spot the lesson letter", words:[["फ़क़ीरु","فقيرُ","fakir"],["ख़बर","خبر","news"]]},
+ {stage:"b", min:10, title:"Vowels on their own", sd:"حرفِ علت", dv:"स्वर", hint:"Used at the start of a word. Short and long come in pairs.",
+  letters:[["अ","اَ","a"],["आ","آ","aa"],["इ","اِ","i"],["ई","اِي","ee"],["उ","اُ","u"],["ऊ","اُو","oo"],["ए","اي","e"],["ओ","او","o"]],
+  tricks:[`Long = short + an extra stroke: ${D("अ")} ${S("(اَ)")} becomes ${D("आ")} ${S("(آ)")}.`,
+          `Every consonant already has a hidden <b>a</b>: ${D("क")} ${S("(ڪَ)")} is read "ka".`],
+  wordsLabel:"Read it", words:[["आहे","آهي","is"],["उठु","اُٺُ","camel"]]},
+ {stage:"b", min:12, title:"Vowel marks, part 1", sd:"اعراب", dv:"मात्रा", hint:"Inside a word, vowels shrink into marks attached to the letter.",
+  letters:[["का","ڪا","ा = aa"],["कि","ڪِ","ि = i"],["की","ڪي","ी = ee"]],
+  tricks:[`${D("ि")} is written <b>before</b> the letter but said <b>after</b> it: ${D("कि")} ${S("(ڪِ)")} = "ki".`,
+          `These marks work like your alif, zer and ye: ${D("ा")} = ${S("(ا)")}, ${D("ि")} = ${S("(ِ)")}, ${D("ी")} = ${S("(ي)")}.`],
+  wordsLabel:"Read it", words:[["मानी","ماني","bread"],["किताबु","ڪتابُ","book"]]},
+ {stage:"b", min:12, title:"Vowel marks, part 2", sd:"اعراب", dv:"मात्रा", hint:"Marks below and above the letter.",
+  letters:[["कु","ڪُ","ु = u"],["कू","ڪُو","ू = oo"],["के","ڪي","े = e"],["कै","ڪَي","ै = ai"],["को","ڪو","ो = o"],["कौ","ڪَو","ौ = au"]],
+  tricks:[`${D("ु")} and ${D("ू")} <b>hang below</b>, like your pesh ${S("(ُ)")}.`,
+          `${D("ो")} is just ${D("ा")} + ${D("े")} on top. Spot the pattern.`],
+  wordsLabel:"Read it", words:[["कुतो","ڪُتو","dog"],["छोकरो","ڇوڪرو","boy"]]},
+ {stage:"c", min:10, title:"Sindhi word endings", sd:"لفظن جي پڇاڙي", dv:"लफ़्ज़नि जी पछाड़ी", hint:"The short vowel you often skip in Arabic script is always written in Devanagari.",
+  letters:[["घरु","گھرُ","ends in u"],["राति","راتِ","ends in i"],["छोकरो","ڇوڪرو","ends in o"]],
+  tricks:[`Most Sindhi nouns end in a short vowel. Devanagari <b>always shows it</b>: ${D("घरु")} ${S("(گھرُ)")}.`,
+          `This is your advantage. You already hear these endings. Now you just see them.`],
+  wordsLabel:"Read it", words:[["राति","راتِ","night"],["वणु","وڻُ","tree"]]},
+ {stage:"c", min:15, title:"Short sentences", sd:"ننڍا جملا", dv:"नंढा जुमला", hint:"Put it all together. One new mark: the nasal dot.",
+  letters:[["ं","ں","nasal dot"],["मां","مان","I"],["आहियां","آهيان","am"]],
+  tricks:[`The dot on top ${D("ं")} = your noon ghunna ${S("(ں)")}.`,
+          `Read word by word. Say it out loud. Your ear will confirm it.`],
+  wordsLabel:"Read it", words:[["मां घरि आहियां","مان گھرِ آهيان","I am at home"],["पाणी थधो आहे","پاڻي ٿڌو آهي","the water is cold"]]},
+ {stage:"c", min:15, title:"Joined letters + typing", sd:"ڳنڍيل اکر", dv:"ॻंढियल अखर", hint:"When two consonants meet, the first one often gets cut in half.",
+  letters:[["्","ْ","halant = sukun"],["स्त","سْت","st"],["त्र","تْر","tr"],["क्ष","ڪْش","ksh"],["ल्ह","لھ","lh"]],
+  tricks:[`The small slash ${D("्")} is your sukun ${S("(ْ)")}. It removes the hidden "a".`,
+          `Add a Sindhi or Hindi <b>Devanagari keyboard</b> on your phone. Type what you hear and check the shape.`],
+  wordsLabel:"Read it", words:[["दोस्तु","دوستُ","friend"],["ॻाल्हि","ڳالھِ","talk"]]}
+];
+const TOTAL = LESSONS.reduce((s,l)=>s+l.min,0);
+const fmt = m => `${Math.floor(m/60)} h ${m%60} min`;
+const stageMin = s => LESSONS.filter(l=>l.stage===s).reduce((x,l)=>x+l.min,0);
+const stageRange = s => { const ix=LESSONS.map((l,i)=>l.stage===s?i+1:0).filter(Boolean); return [ix[0], ix[ix.length-1], ix.length]; };
+const consonantCount = LESSONS.filter(l=>l.stage==="a").reduce((x,l)=>x+l.letters.length,0);
+const TOUR = [
+ {k:"plan", title:"How the course works", sub:"The 3 parts and your buttons", min:1},
+ {k:"mouth", title:"Your mouth map", sub:"Why the letters come in this order", min:1},
+ {k:"extra", title:"Sindhi's 4 extra letters", sub:"The letters Hindi doesn't have", min:1}
+];
+
+/* State */
+let done=new Set(), cur=0, seen=new Set(), quiz=null, screen="home", stack=[], pausedMsg=false;
+try{ done=new Set(JSON.parse(localStorage.getItem("dedar-done")||"[]")); cur=+localStorage.getItem("dedar-cur")||0; seen=new Set(JSON.parse(localStorage.getItem("dedar-tour")||"[]")); }catch(e){}
+if(!(cur>=0&&cur<LESSONS.length)) cur=0;
+function save(){ try{ localStorage.setItem("dedar-done",JSON.stringify([...done])); localStorage.setItem("dedar-cur",String(cur)); localStorage.setItem("dedar-tour",JSON.stringify([...seen])); }catch(e){} }
+
+const $=id=>document.getElementById(id);
+let toastT;
+function toast(m){ const t=$("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2600); }
+function show(s, push=true){ if(push && s!==screen) stack.push(screen); screen=s; if(s.startsWith("tour-")){ seen.add(s.slice(5)); save(); } if(s!=="home") pausedMsg=false; render(); window.scrollTo(0,0); }
+function back(){ const p=stack.pop()||"home"; screen=p; render(); window.scrollTo(0,0); }
+function openLesson(i){ cur=i; quiz=null; save(); show("lesson"); }
+
+/* Mouth SVG */
+const MOUTH=[
+ {name:"Throat", sd:"ڳلو", dv:"ॻलो", how:"Back of tongue goes up", ex:["क","ڪ"], lesson:0,
+  tongue:"M22 80 C14 40 30 22 44 33 C60 44 80 52 92 60 L92 67 C70 77 42 83 22 80Z", hit:[30,30]},
+ {name:"Palate", sd:"وات جي ڇت", dv:"वात जी छत", how:"Middle of tongue goes up", ex:["च","چ"], lesson:1,
+  tongue:"M22 80 C24 62 36 48 48 34 C56 25 66 24 76 36 C84 46 90 54 92 60 L92 67 C70 77 42 83 22 80Z", hit:[61,23]},
+ {name:"Tongue-curl", sd:"مُڙيل ڄڀ", dv:"मुड़ियल ॼिभ", how:"Tongue tip curls back and up", ex:["ट","ٽ"], lesson:2,
+  tongue:"M22 80 C30 64 54 60 70 57 C77 54 79 42 79 31 C83 32 86 44 85 54 C87 61 90 64 92 66 L92 67 C70 77 42 83 22 80Z", hit:[81,27]},
+ {name:"Teeth", sd:"ڏند", dv:"ॾंद", how:"Tongue tip touches upper teeth", ex:["त","ت"], lesson:3,
+  tongue:"M22 80 C30 64 54 58 76 52 C85 48 90 45 93 45 C94 51 93 58 92 64 L92 67 C70 77 42 83 22 80Z", hit:[92,44]},
+ {name:"Lips", sd:"چپ", dv:"चप", how:"Lips press together", ex:["प","پ"], lesson:4,
+  tongue:"M22 80 C30 67 56 62 78 62 C86 62 91 64 92 66 L92 67 C70 77 42 83 22 80Z", hit:[110,53], closed:true}
+];
+function mouthParts(m){
+  const lips=m.closed
+    ? `<path class="lip" d="M99 33 C109 34 113 44 110 53"/><path class="lip" d="M110 53 C113 62 109 71 99 73"/>`
+    : `<path class="lip" d="M99 33 C109 34 113 42 109 49"/><path class="lip" d="M109 57 C113 64 109 71 99 73"/>`;
+  return `<path class="face" d="M100 -6 C104 4 113 12 116 20 C115 25 107 27 101 29 C100 30 99 31 99 33"/>
+    <path class="face" d="M99 73 C103 75 107 80 106 86 C105 92 98 96 88 96"/>
+    <path class="face" d="M14 62 L14 96"/>
+    <path class="roof" d="M14 62 C14 32 40 21 60 21 C78 21 90 27 95 36"/>
+    <path class="tongue-fill" d="${m.tongue}"/>
+    <rect class="tooth" x="93" y="35" width="6" height="13" rx="2"/>
+    <rect class="tooth" x="93" y="60" width="6" height="12" rx="2"/>
+    ${lips}`;
+}
+function mouthSVG(m){
+  return `<svg viewBox="6 -10 116 108" role="img" aria-label="Side view of a face looking right. ${m.name}: ${m.how}.">${mouthParts(m)}
+    <circle class="ring" cx="${m.hit[0]}" cy="${m.hit[1]}" r="5"/><circle class="hit" cx="${m.hit[0]}" cy="${m.hit[1]}" r="4.5"/></svg>`;
+}
+function keySVG(){
+  const rest={tongue:"M22 80 C30 67 56 62 78 62 C86 62 91 64 92 66 L92 67 C70 77 42 83 22 80Z"};
+  return `<svg viewBox="-50 -14 212 114" role="img" aria-label="Labelled side view of a face looking right: nose, lips, teeth, roof of mouth, tongue and throat.">
+    ${mouthParts(rest)}
+    <path class="lead" d="M112 12 L126 6"/><text class="lbl" x="128" y="9">Nose</text>
+    <path class="lead" d="M99 41 L126 38"/><text class="lbl" x="128" y="41">Teeth</text>
+    <path class="lead" d="M112 53 L126 56"/><text class="lbl" x="128" y="59">Lips</text>
+    <path class="lead" d="M45 23 L36 2"/><text class="lbl" x="36" y="-2" text-anchor="middle">Roof of mouth</text>
+    <text class="lbl t" x="52" y="75" text-anchor="middle">Tongue</text>
+    <path class="lead" d="M14 74 L-4 74"/><text class="lbl" x="-6" y="77" text-anchor="end">Throat</text>
+    <text class="lbl" x="-6" y="88" text-anchor="end" style="font-weight:400;fill:var(--muted)">(back)</text>
+    <text class="lbl" x="128" y="76" style="font-weight:400;fill:var(--muted)">(front)</text>
+  </svg>`;
+}
+
+/* Screens */
+const NAVS=[
+ {k:"home", label:"Home", icon:`<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>`},
+ {k:"tour", label:"Guide", icon:`<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>`},
+ {k:"outline", label:"All lessons", icon:`<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>`},
+ {k:"lesson", label:"Learn", icon:`<path d="M4 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-4a2 2 0 0 0-2 2"/>`}
+];
+function navKey(){ return screen.startsWith("tour")?"tour":screen; }
+function renderNav(){
+  $("nav").innerHTML=NAVS.map(n=>`<button data-k="${n.k}" class="${navKey()===n.k?"on":""}" aria-current="${navKey()===n.k?"page":"false"}"><span class="pill"><svg viewBox="0 0 24 24">${n.icon}</svg></span>${n.label}</button>`).join("");
+  $("nav").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+    const k=b.dataset.k; stack=[];
+    if(k==="tour") show("tour-"+TOUR[seen.size>=TOUR.length?0:seen.size].k,false);
+    else show(k,false);
+  });
+}
+function renderBar(title, step){
+  $("appbar").innerHTML = `${screen==="home"?"":`<button class="back" id="backBtn" aria-label="Go back">←</button>`}
+    <span class="appbar-title">${title}</span>${step?`<span class="appbar-step">${step}</span>`:""}`;
+  const b=$("backBtn"); if(b) b.onclick=back;
+}
+function progressHTML(){
+  const n=done.size;
+  return `<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${LESSONS.length}" aria-valuenow="${n}"><span style="width:${n/LESSONS.length*100}%"></span></div>
+    <div class="prog-meta"><span>${n} of ${LESSONS.length} lessons done</span><span>${fmt(LESSONS.filter((l,i)=>!done.has(i)).reduce((x,l)=>x+l.min,0))} left</span></div>`;
+}
+
+function homeScreen(){
+  renderBar("Project Dedar");
+  const tourDone = TOUR.every(t=>seen.has(t.k));
+  const allDone = done.size===LESSONS.length;
+  const l = LESSONS[cur];
+  const lessonCard = `<div class="card">
+      <span class="eyebrow">${done.size===0?"Your first lesson":allDone?"All done":"Pick up where you left off"}</span>
+      <div class="next-up"><b>Lesson ${cur+1}: ${l.title}</b>${TR(l.sd,l.dv)}<span class="muted">${l.min} minutes · ${l.letters.length} items</span></div>
+      ${progressHTML()}
+      <button class="btn ${tourDone?"primary":""} big" id="goLesson">${allDone?"Review lessons":done.size===0?`Start lesson 1 →`:`Continue lesson ${cur+1} →`}</button>
+    </div>`;
+  const tourCard = `<div class="card">
+      <span class="eyebrow">${tourDone?"The guide":"New here? Start here"}</span>
+      <h3>${tourDone?"Need a refresher?":"Take the 3-minute guide first"}</h3>
+      <ol class="tour-list">${TOUR.map((t,i)=>`<li><button class="tour-item${seen.has(t.k)?" seen":""}" data-k="${t.k}">
+        <span class="n">${seen.has(t.k)?"✓":i+1}</span><span class="t"><b>${t.title}</b><small>${t.sub} · ${t.min} min</small></span><span class="go">→</span></button></li>`).join("")}</ol>
+      ${tourDone?"":`<button class="btn primary big" id="startTour">Start the guide →</button>`}
+    </div>`;
+  $("view").innerHTML = `
+    ${pausedMsg?`<div class="paused" role="status"><b>Paused. Your place is saved.</b><span>You're on lesson ${cur+1}. Come back anytime on this browser.</span></div>`:""}
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span class="eyebrow">Adil &amp; Claude</span>
+      <h1>Read Sindhi in Devanagari</h1>
+      <p class="lede">You already know every sound. You only learn <b>new shapes</b>, always next to the Arabic-script letter you know.</p>
+      <div class="pair" aria-label="Example: Devanagari ॿ equals Arabic ٻ"><span class="big">ॿ</span><span class="eq">=</span><span class="big-ar" dir="rtl" lang="sd">ٻ</span></div>
+    </div>
+    ${tourDone?lessonCard+tourCard:tourCard+lessonCard}
+    <div class="facts">
+      <button class="fact" data-go="outline"><b>13 lessons</b><span>Titles, letters and time</span><span class="cue">See all →</span></button>
+      <button class="fact" data-go="outline"><b>${fmt(TOTAL)}</b><span>in total. One lesson a day.</span><span class="cue">See the plan →</span></button>
+      <button class="fact" data-go="tour-extra"><b>4 extra letters</b><span>that Hindi doesn't have</span><span class="cue">See them →</span></button>
+    </div>`;
+  $("goLesson").onclick=()=>openLesson(cur);
+  const st=$("startTour"); if(st) st.onclick=()=>show("tour-plan");
+  document.querySelectorAll(".tour-item").forEach(b=>b.onclick=()=>show("tour-"+b.dataset.k));
+  document.querySelectorAll(".fact").forEach(b=>b.onclick=()=>show(b.dataset.go));
+}
+
+function tourNav(i){
+  const nextBtn = i<TOUR.length-1
+    ? `<button class="btn primary big" id="tourNext">Next: ${TOUR[i+1].title} →</button>`
+    : `<button class="btn primary big" id="tourNext">Start lesson ${cur+1} →</button>`;
+  return `<div class="dots" aria-label="Step ${i+1} of 3">${TOUR.map((_,j)=>`<i class="${j===i?"on":""}"></i>`).join("")}</div>${nextBtn}`;
+}
+function bindTourNav(i){ $("tourNext").onclick=()=> i<TOUR.length-1 ? show("tour-"+TOUR[i+1].k) : openLesson(cur); }
+
+function tourPlan(){
+  renderBar("How the course works","Guide 1 of 3");
+  const st = s=>{ const [a,b,n]=stageRange(s), g=STAGES[s];
+    const what = {
+      a:`The main letters, like ${S("ڪ")}, ${S("ب")}, ${S("ت")}. We group them by <b>mouth position</b>: where your tongue or lips touch when you say the sound.`,
+      b:`The a, i, u sounds. Inside a word they become <b>small marks attached to a letter</b>, like zer and pesh in Arabic script.`,
+      c:`Put it all together. Read <b>real Sindhi words</b> you use every day, then short sentences.`}[s];
+    const ex = {a:`Example: ${D("क")} ${S("(ڪ)")} is said at the <b>back</b> of the mouth.`,
+      b:`Example: ${D("क")} + ${D("ा")} = ${D("का")} ${S("(ڪا)")}`,
+      c:`Example: ${D("घरु")} ${S("(گھرُ)")} = home`}[s];
+    return `<div class="stage ${s}"><div class="top"><span class="tag ${g.cls}">${s.toUpperCase()}</span><span class="name">${g.name}</span>${TR(g.sd,g.dv)}</div>
+      <small>Lessons ${a} to ${b} · ${n} lessons · ${stageMin(s)} min</small><p>${what}</p><p class="ex">${ex}</p></div>`; };
+  $("view").innerHTML = `
+    <h2>3 parts, in order</h2>
+    <p>Each part builds on the one before. Finish A, then B, then C.</p>
+    <div class="stages">${st("a")}${st("b")}${st("c")}</div>
+    <div class="card">
+      <h3>Why is A so much bigger?</h3>
+      <div class="split" aria-hidden="true">
+        <div class="a" style="flex:7">A · 7 lessons</div><div class="b" style="flex:3">B · 3</div><div class="c" style="flex:3">C · 3</div>
+      </div>
+      <ul class="why">
+        <li><b class="k a-c">A</b><span>Sindhi has <b>${consonantCount} consonants</b>. That's a lot of shapes, so they get <b>7 lessons</b>, about 6 letters each.</span></li>
+        <li><b class="k b-c">B</b><span>There are only about <b>10 vowel sounds</b>. They fit in <b>3 lessons</b>: vowels alone, then marks in two halves.</span></li>
+        <li><b class="k c-c">C</b><span>Reading has <b>3 steps</b>: word endings, then sentences, then joined letters.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Every lesson has the same 4 parts</h3>
+      <div class="recipe"><div><b>A table</b>3 to 8 letters</div><div><b>2 tricks</b>to remember them</div><div><b>2 words</b>to read</div><div><b>Done ✓</b>tap to mark it</div></div>
+    </div>
+    <div class="card">
+      <h3>Your 4 buttons</h3>
+      <p class="muted">You'll find these at the bottom of every lesson. Try one now.</p>
+      <div class="cmds">
+        <button class="cmd" data-cmd="next"><b>→ Next</b><span>Go to the next lesson</span></button>
+        <button class="cmd" data-cmd="quiz"><b>? Quiz</b><span>Test yourself</span></button>
+        <button class="cmd" data-cmd="repeat"><b>↺ Repeat</b><span>Start the lesson again</span></button>
+        <button class="cmd" data-cmd="pause"><b>❚❚ Pause</b><span>Save your place</span></button>
+      </div>
+      <p class="muted" style="font-size:.9rem">You can also type these words in our chat with Claude.</p>
+    </div>
+    ${tourNav(0)}`;
+  document.querySelectorAll(".cmd").forEach(b=>b.onclick=()=>doCmd(b.dataset.cmd));
+  bindTourNav(0);
+}
+
+function tourMouth(){
+  renderBar("Your mouth map","Guide 2 of 3");
+  $("view").innerHTML = `
+    <h2>The alphabet walks through your mouth</h2>
+    <p>Consonants are ordered from the <b>back of the mouth</b> to the <b>lips</b>. Say ${S("ڪ")} then ${S("پ")} out loud. Feel your tongue travel forward.</p>
+    <div class="card key">
+      <h3>First, how to read the pictures</h3>
+      <p class="muted">Every picture is a <b>face seen from the side</b>, looking right. The nose and lips are on the right. The throat is on the left.</p>
+      ${keySVG()}
+    </div>
+    <div class="card">
+      <h3>The 5 groups</h3>
+      <p class="muted">The <b style="color:var(--ochre)">yellow dot</b> shows where the touch happens.</p>
+      <div class="arrow"><span>Back</span><i></i><span>Front</span></div>
+      <div class="stations">${MOUTH.map(m=>`<div class="st">${mouthSVG(m)}<div class="txt">
+        <b>${m.name}</b>${TR(m.sd,m.dv)}
+        <span class="ltr">${m.ex[0]} <span class="ar" dir="rtl" lang="sd">(${m.ex[1]})</span></span>
+        <small>${m.how}</small>
+        <button class="go" data-l="${m.lesson}">Open lesson ${m.lesson+1} →</button></div></div>`).join("")}</div>
+    </div>
+    ${tourNav(1)}`;
+  document.querySelectorAll(".st .go").forEach(b=>b.onclick=()=>openLesson(+b.dataset.l));
+  bindTourNav(1);
+}
+
+function tourExtra(){
+  renderBar("Sindhi's 4 extra letters","Guide 3 of 3");
+  $("view").innerHTML = `
+    <h2>Sindhi has 4 extra letters</h2>
+    <p>Hindi does not have these sounds. You say them every day: ${S("ڳ ڄ ڏ ٻ")}.</p>
+    <p>To write them, take a normal letter and <b>add a line underneath</b>.</p>
+    <div class="specials">${[["ग","گ","ॻ","ڳ"],["ज","ج","ॼ","ڄ"],["ड","ڊ","ॾ","ڏ"],["ब","ب","ॿ","ٻ"]].map(([a,b,c,d])=>
+      `<div class="sp"><span class="from">${a} ${S("("+b+")")}</span><span class="arr">↓ add a line</span><span class="to">${c}</span><span class="to-ar" dir="rtl" lang="sd">(${d})</span></div>`).join("")}</div>
+    <p class="muted">You'll meet one in each of lessons 1, 2, 3 and 5. They're marked <span class="badge" style="margin:0">Sindhi only</span> in the tables.</p>
+    <div class="card" style="background:var(--good-soft);border-color:var(--good)"><b>That's the whole guide.</b><span>You're ready for your first lesson.</span></div>
+    ${tourNav(2)}`;
+  bindTourNav(2);
+}
+
+function outlineScreen(){
+  renderBar("All lessons", `${fmt(TOTAL)}`);
+  let h=`<h2>13 lessons</h2>${progressHTML()}<p class="muted">Tap a lesson to open it.</p>`;
+  ["a","b","c"].forEach(s=>{
+    const g=STAGES[s], [a,b,n]=stageRange(s);
+    h+=`<div class="ol-stage"><h3 class="${g.cls}">${s.toUpperCase()} · ${g.name} ${TR(g.sd,g.dv)}</h3><span class="muted" style="font-size:.88rem">Lessons ${a} to ${b} · ${stageMin(s)} min</span></div>`;
+    LESSONS.forEach((l,i)=>{ if(l.stage!==s) return; const d=done.has(i);
+      h+=`<button class="ol-row ${s}${d?" done":""}${i===cur?" cur":""}" data-i="${i}" aria-label="Open lesson ${i+1}: ${l.title}, ${l.min} minutes${d?", done":""}">
+        <span class="ol-num">${d?"✓":i+1}</span>
+        <span class="ol-txt"><b>${l.title} ${TR(l.sd,l.dv)}</b>
+          <span class="chips">${l.letters.map(x=>`<span class="lc">${x[0]} ${S("("+x[1]+")")}</span>`).join("")}</span></span>
+        <span class="ol-min">${l.min} min</span></button>`;
+    });
+  });
+  $("view").innerHTML=h;
+  document.querySelectorAll(".ol-row").forEach(b=>b.onclick=()=>openLesson(+b.dataset.i));
+}
+
+/* Commands */
+function doCmd(c){
+  if(c==="next"){ if(cur<LESSONS.length-1){ openLesson(cur+1); toast(`Lesson ${cur+1}: ${LESSONS[cur].title}`);} else toast("This is the last lesson. Well done!"); }
+  else if(c==="quiz"){ if(screen!=="lesson") show("lesson"); startQuiz(); }
+  else if(c==="repeat"){ openLesson(cur); toast(`Starting lesson ${cur+1} again`); }
+  else if(c==="pause"){ save(); stack=[]; pausedMsg=true; screen="home"; render(); window.scrollTo(0,0); }
+}
+
+/* Quiz */
+const isMark=s=>/^[ऀ-ःऺ-ॏ]$/.test(s);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+function startQuiz(){
+  const l=LESSONS[cur];
+  const items=[...l.letters.filter(x=>!isMark(x[0])).map(x=>({d:x[0],a:x[1],kind:"l"})),...l.words.map(w=>({d:w[0],a:w[1],kind:"w"}))];
+  const poolL=LESSONS.flatMap(x=>x.letters.filter(y=>!isMark(y[0])).map(y=>y[1]));
+  const poolW=LESSONS.flatMap(x=>x.words.map(y=>y[1]));
+  quiz={i:0,score:0,answered:false,qs:shuffle(items).slice(0,5).map(q=>{
+    const own=items.filter(x=>x.kind===q.kind&&x.a!==q.a).map(x=>x.a);
+    const pool=[...new Set([...shuffle(own),...shuffle(q.kind==="l"?poolL:poolW)])].filter(a=>a!==q.a);
+    return {...q,opts:shuffle([q.a,...pool.slice(0,3)])};
+  })};
+  renderLessonScreen();
+  const qb=$("quizBox"); if(qb) qb.scrollIntoView({block:"start"});
+}
+function quizHTML(){
+  if(!quiz) return "";
+  const n=quiz.qs.length;
+  if(quiz.i>=n){
+    const msg=quiz.score===n?"Perfect! Mark this lesson done.":quiz.score>=n-1?"Very good. One more look and you've got it.":"Good try. Read the table once more, then quiz again.";
+    return `<div class="quiz" id="quizBox"><div class="q-end"><span class="score">${quiz.score} / ${n}</span><p>${msg}</p>
+      <div class="row"><button class="btn quizb" id="qAgain">Quiz again</button><button class="btn" id="qClose">Close quiz</button></div></div></div>`;
+  }
+  const q=quiz.qs[quiz.i];
+  return `<div class="quiz" id="quizBox">
+    <div class="quiz-top"><b>Quiz · Lesson ${cur+1}</b><span>Question ${quiz.i+1} of ${n} · Score ${quiz.score}</span></div>
+    <div class="q-prompt">${q.d}</div>
+    <p class="q-ask">Which one is the same in Arabic script?</p>
+    <div class="q-opts">${q.opts.map(o=>`<button class="q-opt" dir="rtl" lang="sd" data-a="${o}">${o}</button>`).join("")}</div>
+    <p class="q-msg" id="qMsg"></p>
+    <div class="row" style="justify-content:space-between"><button class="btn" id="qClose">Close quiz</button><button class="btn primary" id="qNext" hidden>${quiz.i===n-1?"See my score":"Next question →"}</button></div>
+  </div>`;
+}
+function bindQuiz(){
+  if(!quiz) return;
+  const c=$("qClose"); if(c) c.onclick=()=>{quiz=null;renderLessonScreen();};
+  const a=$("qAgain"); if(a) a.onclick=startQuiz;
+  document.querySelectorAll(".q-opt").forEach(b=>b.onclick=()=>{
+    if(quiz.answered) return; quiz.answered=true;
+    const q=quiz.qs[quiz.i], ok=b.dataset.a===q.a; if(ok) quiz.score++;
+    document.querySelectorAll(".q-opt").forEach(x=>{x.disabled=true; if(x.dataset.a===q.a) x.classList.add("right");});
+    if(!ok) b.classList.add("wrong");
+    const m=$("qMsg"); m.className="q-msg "+(ok?"right":"wrong"); m.innerHTML=ok?"Correct!":`Not quite. The answer is ${S(q.a)}.`;
+    $("qNext").hidden=false; $("qNext").focus();
+  });
+  const nx=$("qNext"); if(nx) nx.onclick=()=>{quiz.i++;quiz.answered=false;renderLessonScreen();const qb=$("quizBox"); if(qb) qb.scrollIntoView({block:"nearest"});};
+}
+
+/* Lesson screen */
+function renderLessonScreen(){
+  const l=LESSONS[cur], isDone=done.has(cur), g=STAGES[l.stage];
+  renderBar(`Lesson ${cur+1}`, `${l.min} min`);
+  const rows=l.letters.map(([d,a,s,sp])=>`<tr class="${sp?"special":""}"><td class="d">${d}</td><td class="a">(${S(a)})</td><td class="s">${s}${sp?'<span class="badge">Sindhi only</span>':""}</td></tr>`).join("");
+  const words=l.words.map(([d,a,m],k)=>`<div class="word"><span class="w-d">${d}</span><span class="w-a" id="wa-${k}" hidden>(${S(a)})</span><span class="w-m" id="wm-${k}" hidden>${m}</span><button class="reveal" data-k="${k}">Show answer</button></div>`).join("");
+  $("view").innerHTML=`
+    <div class="rail" aria-label="Jump to a lesson">${LESSONS.map((x,i)=>`<button class="chip ${x.stage}${done.has(i)?" done":""}${i===cur?" on":""}" data-i="${i}" title="Lesson ${i+1}: ${x.title}" aria-label="Lesson ${i+1}: ${x.title}${done.has(i)?", done":""}">${done.has(i)?"✓":i+1}</button>`).join("")}</div>
+    <article class="lesson">
+      <div class="lesson-head ${l.stage}">
+        <span class="eyebrow">Lesson ${cur+1} of ${LESSONS.length} · ${l.stage.toUpperCase()} · ${g.name}</span>
+        <h2>${l.title}</h2>${TR(l.sd,l.dv)}
+        <p class="hint">${l.hint}</p>
+      </div>
+      <div class="lesson-body">
+        <div class="block"><h4>1 · THE LETTERS</h4><div class="tbl-wrap"><table><thead><tr><th>Devanagari</th><th>Arabic</th><th>Sound</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+        <div class="block"><h4>2 · TWO TRICKS</h4><ul class="tricks">${l.tricks.map(t=>`<li><span>${t}</span></li>`).join("")}</ul></div>
+        <div class="block"><h4>3 · ${l.wordsLabel.toUpperCase()}</h4><p class="muted" style="font-size:.95rem">Try to read it first. Then tap to check.</p><div class="words">${words}</div></div>
+      </div>
+      ${quizHTML()}
+      <div class="lesson-foot">
+        <button class="btn ${isDone?"soft":"primary"} big" id="markBtn">${isDone?"✓ Done · tap to undo":"4 · Mark lesson done"}</button>
+        <div class="toolbar">
+          <button class="tool" data-t="back" ${cur===0?"disabled":""}><span class="i">←</span>Back</button>
+          <button class="tool" data-t="repeat"><span class="i">↺</span>Repeat</button>
+          <button class="tool q" data-t="quiz"><span class="i">?</span>Quiz</button>
+          <button class="tool" data-t="pause"><span class="i">❚❚</span>Pause</button>
+          <button class="tool" data-t="next" ${cur===LESSONS.length-1?"disabled":""}><span class="i">→</span>Next</button>
+        </div>
+      </div>
+    </article>`;
+  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cur=+b.dataset.i;quiz=null;save();renderLessonScreen();window.scrollTo(0,0);});
+  document.querySelectorAll(".reveal").forEach(b=>b.onclick=()=>{const k=b.dataset.k;$(`wa-${k}`).hidden=false;$(`wm-${k}`).hidden=false;b.hidden=true;});
+  $("markBtn").onclick=()=>{
+    if(done.has(cur)){ done.delete(cur); save(); renderLessonScreen(); return; }
+    done.add(cur); const was=cur; quiz=null;
+    if(cur<LESSONS.length-1) cur++;
+    save(); renderLessonScreen(); window.scrollTo(0,0);
+    toast(done.size===LESSONS.length?"Course complete! Amazing work.":`Lesson ${was+1} done ✓  Next up: ${LESSONS[cur].title}`);
+  };
+  document.querySelectorAll(".tool").forEach(b=>b.onclick=()=>{
+    const t=b.dataset.t;
+    if(t==="back"&&cur>0){cur--;quiz=null;save();renderLessonScreen();window.scrollTo(0,0);}
+    else doCmd(t);
+  });
+  bindQuiz();
+  renderNav();
+}
+
+function render(){
+  renderNav();
+  if(screen==="home") homeScreen();
+  else if(screen==="tour-plan") tourPlan();
+  else if(screen==="tour-mouth") tourMouth();
+  else if(screen==="tour-extra") tourExtra();
+  else if(screen==="outline") outlineScreen();
+  else renderLessonScreen();
+}
+render();
+</script>
+<script>
+if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{})); }
+</script>
+</body>
+</html>
