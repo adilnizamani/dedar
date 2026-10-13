@@ -239,6 +239,25 @@ tr.special td.d{color:var(--special)}
 .word .w-d{font-family:var(--dev);font-size:2rem;font-weight:600;line-height:1.3}
 .word .w-a{font-family:var(--arab);font-size:1.5rem;color:var(--madder)}
 .word .w-m{font-size:.92rem;color:var(--muted)}
+.say{width:44px;height:44px;flex:none;border-radius:50%;border:2px solid var(--indigo);background:var(--surface);color:var(--indigo);cursor:pointer;display:inline-grid;place-items:center;padding:0;vertical-align:middle}
+.say svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.say svg path:first-child{fill:currentColor}
+.say:hover{background:var(--a-soft)}
+.say.playing{background:var(--indigo);color:var(--surface)}
+.rec-item{background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rec-item.has{border-color:var(--good);background:var(--good-soft)}
+.rec-text{display:flex;flex-direction:column;min-width:0;flex:1 1 160px}
+.rec-d{font-family:var(--dev);font-size:2rem;font-weight:600;line-height:1.3}
+.rec-a .ar{font-size:1.4rem;color:var(--madder)}
+.rec-text small{color:var(--muted);font-size:.9rem}
+.rec-btns{display:flex;gap:8px;flex-wrap:wrap}
+.recb{border:2px solid var(--madder);color:var(--madder);background:var(--surface);border-radius:12px;padding:12px 14px;font-weight:700;cursor:pointer;min-width:112px}
+.recb.on{background:var(--madder);color:var(--surface);animation:blink 1s ease-in-out infinite}
+@keyframes blink{50%{opacity:.55}}
+.playb{border:2px solid var(--indigo);color:var(--indigo);background:var(--surface);border-radius:12px;padding:12px 14px;font-weight:700;cursor:pointer}
+td.h{width:56px;text-align:center}
+.w-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.q-prompt .say{margin-top:6px}
 .reveal{font-size:.95rem;font-weight:700;align-self:flex-start;background:var(--a-soft);border:0;border-radius:10px;padding:6px 12px;color:var(--indigo);cursor:pointer}
 .lesson-foot{padding:16px 18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
 .toolbar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
@@ -375,7 +394,7 @@ const $=id=>document.getElementById(id);
 let toastT;
 function toast(m){ const t=$("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2600); }
 function show(s, push=true){ if(push && s!==screen) stack.push(screen); screen=s; if(s.startsWith("tour-")){ seen.add(s.slice(5)); save(); } if(s!=="home") pausedMsg=false; render(); window.scrollTo(0,0); }
-function back(){ const p=stack.pop()||"home"; screen=p; render(); window.scrollTo(0,0); }
+function back(){ if(screen==="studio" && studioLesson!==null){ studioLesson=null; render(); window.scrollTo(0,0); return; } const p=stack.pop()||"home"; screen=p; render(); window.scrollTo(0,0); }
 function openLesson(i){ cur=i; quiz=null; save(); show("lesson"); }
 
 /* Mouth SVG */
@@ -608,12 +627,155 @@ function doCmd(c){
   else if(c==="pause"){ save(); stack=[]; pausedMsg=true; screen="home"; render(); window.scrollTo(0,0); }
 }
 
+/* Audio: real Sindhi recordings only. Recorded in the Studio, cleaned up and listed here by Claude. Files: a-<id>.mp3 */
+const RECORDED = new Set([]);
+const SPK = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>`;
+function sayBtn(text,id){
+  if(isMark(text) || !RECORDED.has(id)) return "";
+  return `<button class="say" data-id="${id}" aria-label="Listen to ${text}">${SPK}</button>`;
+}
+let player=null;
+function speak(id,btn){
+  if(player) player.pause();
+  document.querySelectorAll(".say.playing").forEach(b=>b.classList.remove("playing"));
+  player=new Audio(`a-${id}.mp3`);
+  if(btn){ btn.classList.add("playing"); player.onended=player.onerror=()=>btn.classList.remove("playing"); }
+  player.play().catch(()=>{ if(btn) btn.classList.remove("playing"); toast("Couldn't play this sound. Open the app once with internet, then it works offline."); });
+}
+
+/* Recording studio. Open the app link with #studio at the end. For Adil only. */
+function studioItems(i){
+  const l=LESSONS[i];
+  return [...l.letters.map((x,r)=>({id:`l${i}-${r}`,d:x[0],a:x[1],hint:`Say the sound: ${x[2]}`})).filter(x=>!isMark(x.d)),
+          ...l.words.map((w,k)=>({id:`w${i}-${k}`,d:w[0],a:w[1],hint:`Say the words: ${w[2]}`}))];
+}
+let dbP=null;
+function db(){ if(!dbP) dbP=new Promise((res,rej)=>{ const r=indexedDB.open("dedar-studio",1); r.onupgradeneeded=()=>r.result.createObjectStore("clips"); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }); return dbP; }
+async function idb(mode,fn){ const d=await db(); return new Promise((res,rej)=>{ const t=d.transaction("clips",mode); const r=fn(t.objectStore("clips")); t.oncomplete=()=>res(r&&r.result); t.onerror=()=>rej(t.error); }); }
+const clipPut=(id,blob)=>idb("readwrite",s=>s.put(blob,id));
+const clipGet=id=>idb("readonly",s=>s.get(id));
+const clipKeys=()=>idb("readonly",s=>s.getAllKeys());
+
+let studioLesson=null, recKeys=new Set(), mic=null, rec=null, recId=null, recTimer=null, clipPlayer=null;
+async function studioScreen(){
+  try{ recKeys=new Set(await clipKeys()); }catch(e){ recKeys=new Set(); }
+  if(studioLesson===null) studioHome(); else studioLessonView();
+}
+function studioHome(){
+  renderBar("Recording studio","For Adil");
+  const all=LESSONS.map((l,i)=>studioItems(i)), total=all.reduce((x,a)=>x+a.length,0), n=[...recKeys].length;
+  $("view").innerHTML=`
+    <h2>Record your voice</h2>
+    <div class="card">
+      <h3>How it works</h3>
+      <ol class="why" style="list-style:decimal;padding-left:1.2em">
+        <li>Find a <b>quiet room</b>. Hold the phone about <b>20 cm</b> from your mouth.</li>
+        <li>Tap <b>● Record</b>, say it <b>once</b>, tap <b>■ Stop</b>. Recording stops by itself after <b>8 seconds</b>.</li>
+        <li>Tap <b>▶ Play</b> to check. Not happy? Just record again.</li>
+        <li>When you're done, tap <b>Download recordings</b> and send the file to Claude in chat.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="bar"><span style="width:${n/total*100}%"></span></div>
+      <div class="prog-meta"><span>${n} of ${total} recorded</span><span>about ${Math.max(1,Math.round((total-n)*0.2))} min left</span></div>
+      <button class="btn primary big" id="dlBtn" ${n?"":"disabled"}>Download recordings</button>
+    </div>
+    ${LESSONS.map((l,i)=>{ const it=all[i], c=it.filter(x=>recKeys.has(x.id)).length, full=c===it.length;
+      return `<button class="ol-row ${l.stage}${full?" done":""}" data-i="${i}"><span class="ol-num">${full?"✓":i+1}</span>
+        <span class="ol-txt"><b>${l.title} ${TR(l.sd,l.dv)}</b><span class="muted" style="font-size:.9rem">${c} of ${it.length} recorded</span></span><span class="ol-min">${it.length} clips</span></button>`; }).join("")}`;
+  document.querySelectorAll(".ol-row").forEach(b=>b.onclick=()=>{ studioLesson=+b.dataset.i; studioLessonView(); window.scrollTo(0,0); });
+  $("dlBtn").onclick=downloadZip;
+}
+function studioLessonView(){
+  const i=studioLesson, l=LESSONS[i], items=studioItems(i), c=items.filter(x=>recKeys.has(x.id)).length;
+  renderBar(`Studio · Lesson ${i+1}`, `${c} of ${items.length}`);
+  $("view").innerHTML=`
+    <div><span class="eyebrow">Lesson ${i+1} of ${LESSONS.length}</span><h2>${l.title}</h2>${TR(l.sd,l.dv)}</div>
+    ${items.map(x=>{ const has=recKeys.has(x.id), on=recId===x.id;
+      return `<div class="rec-item${has?" has":""}"><div class="rec-text"><span class="rec-d">${x.d}</span><span class="rec-a">(${S(x.a)})</span><small>${x.hint}</small></div>
+        <div class="rec-btns"><button class="recb${on?" on":""}" data-id="${x.id}">${on?"■ Stop":has?"● Again":"● Record"}</button>
+        ${has?`<button class="playb" data-id="${x.id}">▶ Play</button>`:""}</div></div>`; }).join("")}
+    <div class="row">
+      ${i<LESSONS.length-1?`<button class="btn primary big" id="nextL">Next lesson →</button>`:""}
+      <button class="btn big" id="dlBtn2">Download recordings</button>
+    </div>`;
+  document.querySelectorAll(".recb").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.id;
+    if(rec && recId===id) stopRec();
+    else if(rec) toast("Stop the current recording first.");
+    else startRec(id);
+  });
+  document.querySelectorAll(".playb").forEach(b=>b.onclick=async()=>{
+    const blob=await clipGet(b.dataset.id); if(!blob) return;
+    if(clipPlayer) clipPlayer.pause();
+    clipPlayer=new Audio(URL.createObjectURL(blob)); clipPlayer.play().catch(()=>toast("Couldn't play this clip."));
+  });
+  const nl=$("nextL"); if(nl) nl.onclick=()=>{ studioLesson=i+1; studioLessonView(); window.scrollTo(0,0); };
+  $("dlBtn2").onclick=downloadZip;
+}
+async function startRec(id){
+  try{
+    if(!mic) mic=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});
+  }catch(e){ toast("Microphone is blocked. Allow the microphone for this site, then try again."); return; }
+  const types=["audio/webm;codecs=opus","audio/ogg;codecs=opus","audio/mp4","audio/webm"];
+  const mt=types.find(t=>window.MediaRecorder && MediaRecorder.isTypeSupported(t))||"";
+  const chunks=[], r=new MediaRecorder(mic, mt?{mimeType:mt}:undefined);
+  rec=r; recId=id;
+  r.ondataavailable=e=>{ if(e.data && e.data.size) chunks.push(e.data); };
+  r.onstop=async()=>{
+    clearTimeout(recTimer); rec=null; recId=null;
+    const blob=new Blob(chunks,{type:r.mimeType||mt||"audio/webm"});
+    try{ await clipPut(id,blob); recKeys.add(id); toast("Saved ✓"); }catch(e){ toast("Couldn't save. Try again."); }
+    studioLessonView();
+  };
+  r.start(); studioLessonView();
+  recTimer=setTimeout(stopRec,8000);
+}
+function stopRec(){ if(rec && rec.state!=="inactive") rec.stop(); }
+
+const CRC=(()=>{ const t=new Uint32Array(256); for(let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++) c=c&1?0xEDB88320^(c>>>1):c>>>1; t[n]=c>>>0; } return t; })();
+function crc32(u){ let c=0xFFFFFFFF; for(let i=0;i<u.length;i++) c=CRC[(c^u[i])&255]^(c>>>8); return (c^0xFFFFFFFF)>>>0; }
+function makeZip(files){
+  const enc=new TextEncoder(), parts=[], central=[]; let off=0;
+  for(const f of files){
+    const name=enc.encode(f.name), crc=crc32(f.data), sz=f.data.length;
+    const lh=new DataView(new ArrayBuffer(30));
+    lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(12,0x21,true);
+    lh.setUint32(14,crc,true); lh.setUint32(18,sz,true); lh.setUint32(22,sz,true); lh.setUint16(26,name.length,true);
+    parts.push(new Uint8Array(lh.buffer),name,f.data);
+    const ch=new DataView(new ArrayBuffer(46));
+    ch.setUint32(0,0x02014b50,true); ch.setUint16(4,20,true); ch.setUint16(6,20,true); ch.setUint16(14,0x21,true);
+    ch.setUint32(16,crc,true); ch.setUint32(20,sz,true); ch.setUint32(24,sz,true); ch.setUint16(28,name.length,true); ch.setUint32(42,off,true);
+    central.push(new Uint8Array(ch.buffer),name);
+    off+=30+name.length+sz;
+  }
+  const cd=central.reduce((x,p)=>x+p.length,0), end=new DataView(new ArrayBuffer(22));
+  end.setUint32(0,0x06054b50,true); end.setUint16(8,files.length,true); end.setUint16(10,files.length,true); end.setUint32(12,cd,true); end.setUint32(16,off,true);
+  return new Blob([...parts,...central,new Uint8Array(end.buffer)],{type:"application/zip"});
+}
+async function downloadZip(){
+  const keys=await clipKeys(); if(!keys.length){ toast("Nothing recorded yet."); return; }
+  const files=[], list=[];
+  for(const k of keys){
+    const b=await clipGet(k); if(!b) continue;
+    const ext=b.type.includes("ogg")?"ogg":b.type.includes("mp4")?"m4a":"webm";
+    files.push({name:`${k}.${ext}`, data:new Uint8Array(await b.arrayBuffer())});
+    const m=/^([lw])(\d+)-(\d+)$/.exec(k); const L=m&&LESSONS[+m[2]];
+    list.push(`${k}\t${L?(m[1]==="l"?L.letters[+m[3]][0]:L.words[+m[3]][0]):""}`);
+  }
+  files.push({name:"list.txt", data:new TextEncoder().encode(list.join("\n"))});
+  const url=URL.createObjectURL(makeZip(files)), a=document.createElement("a");
+  a.href=url; a.download="dedar-recordings.zip"; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+  toast("Downloaded. Now send dedar-recordings.zip to Claude.");
+}
+
 /* Quiz */
 const isMark=s=>/^[ऀ-ःऺ-ॏ]$/.test(s);
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 function startQuiz(){
   const l=LESSONS[cur];
-  const items=[...l.letters.filter(x=>!isMark(x[0])).map(x=>({d:x[0],a:x[1],kind:"l"})),...l.words.map(w=>({d:w[0],a:w[1],kind:"w"}))];
+  const items=[...l.letters.map((x,r)=>({d:x[0],a:x[1],kind:"l",id:`l${cur}-${r}`})).filter(x=>!isMark(x.d)),...l.words.map((w,k)=>({d:w[0],a:w[1],kind:"w",id:`w${cur}-${k}`}))];
   const poolL=LESSONS.flatMap(x=>x.letters.filter(y=>!isMark(y[0])).map(y=>y[1]));
   const poolW=LESSONS.flatMap(x=>x.words.map(y=>y[1]));
   quiz={i:0,score:0,answered:false,qs:shuffle(items).slice(0,5).map(q=>{
@@ -635,7 +797,7 @@ function quizHTML(){
   const q=quiz.qs[quiz.i];
   return `<div class="quiz" id="quizBox">
     <div class="quiz-top"><b>Quiz · Lesson ${cur+1}</b><span>Question ${quiz.i+1} of ${n} · Score ${quiz.score}</span></div>
-    <div class="q-prompt">${q.d}</div>
+    <div class="q-prompt">${q.d}<div>${sayBtn(q.d,q.id)}</div></div>
     <p class="q-ask">Which one is the same in Arabic script?</p>
     <div class="q-opts">${q.opts.map(o=>`<button class="q-opt" dir="rtl" lang="sd" data-a="${o}">${o}</button>`).join("")}</div>
     <p class="q-msg" id="qMsg"></p>
@@ -661,8 +823,9 @@ function bindQuiz(){
 function renderLessonScreen(){
   const l=LESSONS[cur], isDone=done.has(cur), g=STAGES[l.stage];
   renderBar(`Lesson ${cur+1}`, `${l.min} min`);
-  const rows=l.letters.map(([d,a,s,sp])=>`<tr class="${sp?"special":""}"><td class="d">${d}</td><td class="a">(${S(a)})</td><td class="s">${s}${sp?'<span class="badge">Sindhi only</span>':""}</td></tr>`).join("");
-  const words=l.words.map(([d,a,m],k)=>`<div class="word"><span class="w-d">${d}</span><span class="w-a" id="wa-${k}" hidden>(${S(a)})</span><span class="w-m" id="wm-${k}" hidden>${m}</span><button class="reveal" data-k="${k}">Show answer</button></div>`).join("");
+  const hasA=l.letters.some((x,r)=>RECORDED.has(`l${cur}-${r}`));
+  const rows=l.letters.map(([d,a,s,sp],r)=>`<tr class="${sp?"special":""}"><td class="d">${d}</td><td class="a">(${S(a)})</td><td class="s">${s}${sp?'<span class="badge">Sindhi only</span>':""}</td>${hasA?`<td class="h">${sayBtn(d,`l${cur}-${r}`)}</td>`:""}</tr>`).join("");
+  const words=l.words.map(([d,a,m],k)=>`<div class="word"><span class="w-d">${d}</span><span class="w-a" id="wa-${k}" hidden>(${S(a)})</span><span class="w-m" id="wm-${k}" hidden>${m}</span><div class="w-actions">${sayBtn(d,`w${cur}-${k}`)}<button class="reveal" data-k="${k}">Show answer</button></div></div>`).join("");
   $("view").innerHTML=`
     <div class="rail" aria-label="Jump to a lesson">${LESSONS.map((x,i)=>`<button class="chip ${x.stage}${done.has(i)?" done":""}${i===cur?" on":""}" data-i="${i}" title="Lesson ${i+1}: ${x.title}" aria-label="Lesson ${i+1}: ${x.title}${done.has(i)?", done":""}">${done.has(i)?"✓":i+1}</button>`).join("")}</div>
     <article class="lesson">
@@ -672,7 +835,7 @@ function renderLessonScreen(){
         <p class="hint">${l.hint}</p>
       </div>
       <div class="lesson-body">
-        <div class="block"><h4>1 · THE LETTERS</h4><div class="tbl-wrap"><table><thead><tr><th>Devanagari</th><th>Arabic</th><th>Sound</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+        <div class="block"><h4>1 · THE LETTERS</h4>${hasA?`<p class="muted" style="font-size:.95rem">Tap the speaker to hear each letter.</p>`:""}<div class="tbl-wrap"><table><thead><tr><th>Devanagari</th><th>Arabic</th><th>Sound</th>${hasA?"<th>Hear</th>":""}</tr></thead><tbody>${rows}</tbody></table></div></div>
         <div class="block"><h4>2 · TWO TRICKS</h4><ul class="tricks">${l.tricks.map(t=>`<li><span>${t}</span></li>`).join("")}</ul></div>
         <div class="block"><h4>3 · ${l.wordsLabel.toUpperCase()}</h4><p class="muted" style="font-size:.95rem">Try to read it first. Then tap to check.</p><div class="words">${words}</div></div>
       </div>
@@ -690,6 +853,7 @@ function renderLessonScreen(){
     </article>`;
   document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cur=+b.dataset.i;quiz=null;save();renderLessonScreen();window.scrollTo(0,0);});
   document.querySelectorAll(".reveal").forEach(b=>b.onclick=()=>{const k=b.dataset.k;$(`wa-${k}`).hidden=false;$(`wm-${k}`).hidden=false;b.hidden=true;});
+  document.querySelectorAll(".say").forEach(b=>b.onclick=()=>speak(b.dataset.id,b));
   $("markBtn").onclick=()=>{
     if(done.has(cur)){ done.delete(cur); save(); renderLessonScreen(); return; }
     done.add(cur); const was=cur; quiz=null;
@@ -713,8 +877,11 @@ function render(){
   else if(screen==="tour-mouth") tourMouth();
   else if(screen==="tour-extra") tourExtra();
   else if(screen==="outline") outlineScreen();
+  else if(screen==="studio") studioScreen();
   else renderLessonScreen();
 }
+if(location.hash==="#studio") screen="studio";
+window.addEventListener("hashchange",()=>{ if(location.hash==="#studio"){ stack=[]; studioLesson=null; screen="studio"; render(); } });
 render();
 </script>
 <script>
