@@ -64,6 +64,45 @@ button{font:inherit;color:inherit}
 .tr2{font-size:6.5px;font-weight:400;fill:var(--muted)}
 .sv-ar{font-family:var(--arab)} .sv-dv{font-family:var(--dev)}
 .intro-ex{display:flex;flex-direction:column;gap:6px}
+.h1-tr{display:block;margin-top:6px;font-size:1.15rem}
+.sheet-back{position:fixed;inset:0;z-index:20;background:rgba(5,6,13,.55);display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--surface);width:100%;max-width:560px;max-height:92%;overflow:auto;border-radius:22px 22px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;box-shadow:0 -10px 30px var(--shadow)}
+.sheet-top{display:flex;justify-content:space-between;align-items:center}
+.sheet-x{width:40px;height:40px;border-radius:12px;border:0;background:var(--bg);cursor:pointer;font-size:1rem}
+.sheet-pair{display:flex;align-items:center;justify-content:center;gap:18px;background:var(--bg);border-radius:16px;padding:6px 10px}
+.sheet-a{font-size:3.4rem;line-height:1.5;color:var(--madder)}
+.sheet-d{font-family:var(--dev);font-size:3.4rem;font-weight:600;line-height:1.4}
+.sheet-arrow{color:var(--muted);font-size:1.4rem}
+.sheet-pair.small .sheet-a,.sheet-pair.small .sheet-d{font-size:2.2rem}
+.sheet-say{display:flex;flex-direction:column;gap:2px;text-align:center}
+.sheet-say b{font-size:1.15rem}
+.sheet-say span{color:var(--muted)}
+.sheet-ex{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center}
+.sheet-ex .sheet-pair{align-self:stretch}
+.sheet-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.skip{background:none;border:0;padding:6px;color:var(--indigo);font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer;align-self:center}
+ol.steps{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:8px}
+ol.steps li{padding-left:2px}
+.abc-t td{padding:6px 8px}
+.abc-t td.n{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums;width:1%}
+.abc-t td.a{font-size:1.7rem;width:auto;color:var(--madder);text-align:center}
+.abc-t td.d{font-size:1.7rem;width:auto;text-align:center}
+.abc-t td.say-it{font-size:.92rem}
+.abc-t td.say-it b{display:block;font-size:1.05rem}
+.abc-t td.say-it small{color:var(--muted);line-height:1.3;display:block}
+.abc-t td.l{text-align:center;font-weight:700;color:var(--indigo);font-variant-numeric:tabular-nums}
+.abc-t tr.go{cursor:pointer}
+.abc-t tr.go:hover td{background:var(--a-soft)}
+.abc-t tr.same td.d{color:var(--muted)}
+.marks{display:flex;flex-direction:column;gap:8px}
+.mark{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.mark-pair{display:flex;align-items:center;gap:8px;flex:none;min-width:120px}
+.mark-a{font-size:1.7rem;color:var(--madder)}
+.mark-arrow{color:var(--muted)}
+.mark-d{font-family:var(--dev);font-size:1.7rem;font-weight:600}
+.mark-txt{min-width:0;font-size:.95rem}
+.mark-txt p{margin:2px 0 0;color:var(--muted)}
+.mark-txt .ar{font-size:1.1rem}
 .abc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
 .abc{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:6px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:0;cursor:pointer;position:relative;min-width:0}
 .abc:hover:not(:disabled){border-color:var(--indigo)}
@@ -88,7 +127,7 @@ button{font:inherit;color:inherit}
 .appbar-step{margin-left:auto;font-size:.85rem;color:var(--muted);font-weight:700;white-space:nowrap}
 .view{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 120px;display:flex;flex-direction:column;gap:18px}
 .nav{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);box-shadow:0 -1px 0 var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.nav-in{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.nav-in{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
 .nav button{border:0;background:none;cursor:pointer;padding:8px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.78rem;font-weight:700;color:var(--muted)}
 .nav button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .nav button .pill{padding:3px 16px;border-radius:99px;display:grid;place-items:center}
@@ -339,7 +378,7 @@ const LESSONS = [
   tricks:[`Line underneath = Sindhi extra letter: ${D("ग")} ${S("(گ)")} becomes ${D("ॻ")} ${S("(ڳ)")}.`,
           `The h-letters ${D("ख")} ${S("(ک)")} and ${D("घ")} ${S("(گھ)")} are <b>new shapes</b>, not "letter + h". Memorize them as pictures.`],
   wordsLabel:"Match it", words:[]},
- {stage:"a", min:10, title:"Palate group", sd:"وات جي ڇت", dv:"वात जी छत", hint:"Middle of your tongue touches the hard roof of your mouth.",
+ {stage:"a", min:10, title:"Roof-of-mouth group", sd:"وات جي ڇت", dv:"वात जी छत", hint:"Middle of your tongue touches the hard roof of your mouth.",
   letters:[["च","چ","cha"],["छ","ڇ","chha"],["ज","ج","ja"],["ॼ","ڄ","Sindhi j",1],["झ","جھ","jha"],["ञ","ڃ","nya"]],
   tricks:[`Same trick again: ${D("ज")} ${S("(ج)")} with a line underneath is ${D("ॼ")} ${S("(ڄ)")}.`,
           `${D("ञ")} ${S("(ڃ)")} is rare. Just recognize it. Don't drill it.`],
@@ -400,15 +439,16 @@ const LESSONS = [
           `Add a Sindhi or Hindi <b>Devanagari keyboard</b> on your phone. Type what you hear and check the shape.`],
   wordsLabel:"Read it", words:[["दोस्तु","دوستُ","friend"],["ॻाल्हि","ڳالھِ","talk"]]}
 ];
+const APP_VERSION = "10";
 const TOTAL = LESSONS.reduce((s,l)=>s+l.min,0);
 const fmt = m => `${Math.floor(m/60)} h ${m%60} min`;
 const stageMin = s => LESSONS.filter(l=>l.stage===s).reduce((x,l)=>x+l.min,0);
 const stageRange = s => { const ix=LESSONS.map((l,i)=>l.stage===s?i+1:0).filter(Boolean); return [ix[0], ix[ix.length-1], ix.length]; };
 const consonantCount = LESSONS.filter(l=>l.stage==="a").reduce((x,l)=>x+l.letters.length,0);
 const TOUR = [
- {k:"plan", title:"How the course works", sub:"The 3 parts and your buttons", min:1},
- {k:"mouth", title:"Your mouth map", sub:"Why the letters come in this order", min:1},
- {k:"extra", title:"Sindhi's 4 extra letters", sub:"The letters Hindi doesn't have", min:1}
+ {k:"plan", title:"How the course works", sub:"3 parts, 13 short lessons", min:1},
+ {k:"mouth", title:"Where sounds come from", sub:"Why the letters are in this order", min:1},
+ {k:"extra", title:"Sindhi's special letters", sub:"4 sounds that Hindi doesn't have", min:1}
 ];
 
 /* State */
@@ -420,7 +460,7 @@ function save(){ try{ localStorage.setItem("dedar-done",JSON.stringify([...done]
 const $=id=>document.getElementById(id);
 let toastT;
 function toast(m){ const t=$("toast"); t.textContent=m; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2600); }
-function show(s, push=true){ if(push && s!==screen) stack.push(screen); screen=s; if(s.startsWith("tour-")){ seen.add(s.slice(5)); save(); } if(s!=="home") pausedMsg=false; render(); window.scrollTo(0,0); }
+function show(s, push=true){ closeLetter(); if(push && s!==screen) stack.push(screen); screen=s; if(s.startsWith("tour-")){ seen.add(s.slice(5)); save(); } if(s!=="home") pausedMsg=false; render(); window.scrollTo(0,0); }
 function back(){ if(screen==="studio" && studioLesson!==null){ studioLesson=null; render(); window.scrollTo(0,0); return; } const p=stack.pop()||"home"; screen=p; render(); window.scrollTo(0,0); }
 function openLesson(i){ cur=i; quiz=null; match=null; save(); show("lesson"); }
 
@@ -428,7 +468,7 @@ function openLesson(i){ cur=i; quiz=null; match=null; save(); show("lesson"); }
 const MOUTH=[
  {name:"Throat", sd:"ڳلو", dv:"ॻलो", how:"Back of tongue goes up", ex:["क","ڪ"], lesson:0,
   tongue:"M22 80 C14 40 30 22 44 33 C60 44 80 52 92 60 L92 67 C70 77 42 83 22 80Z", hit:[30,30]},
- {name:"Palate", sd:"وات جي ڇت", dv:"वात जी छत", how:"Middle of tongue goes up", ex:["च","چ"], lesson:1,
+ {name:"Roof of mouth", sd:"وات جي ڇت", dv:"वात जी छत", how:"Middle of tongue goes up", ex:["च","چ"], lesson:1,
   tongue:"M22 80 C24 62 36 48 48 34 C56 25 66 24 76 36 C84 46 90 54 92 60 L92 67 C70 77 42 83 22 80Z", hit:[61,23]},
  {name:"Tongue-curl", sd:"مُڙيل ڄڀ", dv:"मुड़ियल ॼिभ", how:"Tongue tip curls back and up", ex:["ट","ٽ"], lesson:2,
   tongue:"M22 80 C30 64 54 60 70 57 C77 54 79 42 79 31 C83 32 86 44 85 54 C87 61 90 64 92 66 L92 67 C70 77 42 83 22 80Z", hit:[81,27]},
@@ -474,7 +514,8 @@ function keySVG(){
 const NAVS=[
  {k:"home", label:"Home", icon:`<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>`},
  {k:"tour", label:"Guide", icon:`<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>`},
- {k:"outline", label:"All lessons", icon:`<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>`},
+ {k:"alphabet", label:"Letters", icon:`<path d="M5 20 12 4l7 16"/><path d="M8.2 13.5h7.6"/>`},
+ {k:"outline", label:"Lessons", icon:`<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>`},
  {k:"lesson", label:"Learn", icon:`<path d="M4 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-4a2 2 0 0 0-2 2"/>`}
 ];
 function navKey(){ return screen.startsWith("tour")?"tour":screen; }
@@ -509,31 +550,32 @@ function homeScreen(){
       <button class="btn ${tourDone?"primary":""} big" id="goLesson">${allDone?"Review lessons":done.size===0?`Start lesson 1 →`:`Continue lesson ${cur+1} →`}</button>
     </div>`;
   const tourCard = `<div class="card">
-      <span class="eyebrow">${tourDone?"The guide":"New here? Start here"}</span>
-      <h3>${tourDone?"Need a refresher?":"Take the 3-minute guide first"}</h3>${tourDone?TR("ٻيهر ڏسو","ॿीहर ॾिसो"):TR("رهنمائي","रहनुमाई")}
+      <div><h3>${tourDone?"Want a quick refresher?":"New here? Start with a quick guide"}</h3>${tourDone?TR("ٻيهر ڏسو","ॿीहर ॾिसो"):TR("رهنمائي","रहनुमाई")}</div>
+      <p class="muted">${tourDone?"Open any page of the guide again.":"3 short pages, about 3 minutes. They make every lesson easier."}</p>
       <ol class="tour-list">${TOUR.map((t,i)=>`<li><button class="tour-item${seen.has(t.k)?" seen":""}" data-k="${t.k}">
-        <span class="n">${seen.has(t.k)?"✓":i+1}</span><span class="t"><b>${t.title}</b><small>${t.sub} · ${t.min} min</small></span><span class="go">→</span></button></li>`).join("")}</ol>
-      ${tourDone?"":`<button class="btn primary big" id="startTour">Start the guide →</button>`}
+        <span class="n">${seen.has(t.k)?"✓":i+1}</span><span class="t"><b>${t.title}</b><small>${t.sub}</small></span><span class="go">→</span></button></li>`).join("")}</ol>
+      ${tourDone?"":`<button class="btn primary big" id="startTour">Start the guide →</button><button class="skip" id="skipTour">Skip for now, go to lesson ${cur+1}</button>`}
     </div>`;
   $("view").innerHTML = `
     ${pausedMsg?`<div class="paused" role="status"><b>Paused. Your place is saved.</b><span>You're on lesson ${cur+1}. Come back anytime on this browser.</span></div>`:""}
     <div style="display:flex;flex-direction:column;gap:12px">
-      <span class="eyebrow">Adil &amp; Claude</span>
-      <h1>Read Sindhi in Devanagari</h1>
+      <div><h1>Read Sindhi in Devanagari</h1><span class="h1-tr">${TR("سنڌي ديوناگري ۾ پڙهو","सिन्धी देवनागरी में पढ़ो")}</span></div>
       <p class="lede">Sindhi has <b>52 letters</b>. You already know all of them in Arabic script. Here you learn each letter's <b>Devanagari shape</b>, always shown next to the letter you know.</p>
       <div class="intro-ex"><span class="muted">For example, the Sindhi letter ${S("ٻ")} is written like this in Devanagari:</span>
         <div class="pair" aria-label="Arabic ٻ is written ॿ in Devanagari"><span class="big-ar" dir="rtl" lang="sd">ٻ</span><span class="eq">→</span><span class="big">ॿ</span></div></div>
       <button class="btn soft big" id="abcBtn">See all 52 letters in both scripts →</button>
     </div>
-    ${tourDone?lessonCard+tourCard:tourCard+lessonCard}
+    ${(tourDone||done.size>0)?lessonCard+tourCard:tourCard+lessonCard}
     <div class="facts">
       <button class="fact" data-go="outline"><b>13 lessons</b>${TR("13 سبق","13 सबक़")}<span>Titles, letters and time</span><span class="cue">See all →</span></button>
       <button class="fact" data-go="outline"><b>${fmt(TOTAL)}</b><span>in total. One lesson a day.</span><span class="cue">See the plan →</span></button>
       <button class="fact" data-go="tour-extra"><b>4 extra letters</b>${TR("4 وڌيڪ اکر","4 वधीक अखर")}<span>that Hindi doesn't have</span><span class="cue">See them →</span></button>
-    </div>`;
+    </div>
+    <p class="muted" style="font-size:.8rem;text-align:center">Dedar · version ${APP_VERSION}</p>`;
   $("goLesson").onclick=()=>openLesson(cur);
   $("abcBtn").onclick=()=>show("alphabet");
   const st=$("startTour"); if(st) st.onclick=()=>show("tour-plan");
+  const sk=$("skipTour"); if(sk) sk.onclick=()=>openLesson(cur);
   document.querySelectorAll(".tour-item").forEach(b=>b.onclick=()=>show("tour-"+b.dataset.k));
   document.querySelectorAll(".fact").forEach(b=>b.onclick=()=>show(b.dataset.go));
 }
@@ -594,10 +636,10 @@ function tourPlan(){
 }
 
 function tourMouth(){
-  renderBar("Your mouth map","Guide 2 of 3");
+  renderBar("Where sounds come from","Guide 2 of 3");
   $("view").innerHTML = `
-    <h2>The alphabet walks through your mouth</h2>${TR("وات جو نقشو","वात जो नक़्शो")}
-    <p>Consonants are ordered from the <b>back of the mouth</b> to the <b>lips</b>. Say ${S("ڪ")} then ${S("پ")} out loud. Feel your tongue travel forward.</p>
+    <h2>Where each sound is made</h2>${TR("وات ۾ آواز","वात में आवाज़")}
+    <p>The letters are ordered by <b>where in your mouth</b> you make them: from the <b>back</b> (throat) to the <b>front</b> (lips). Say ${S("ڪ")} and then ${S("پ")} out loud. Feel your tongue move forward.</p>
     <div class="card key">
       <h3>First, how to read the pictures</h3>
       <p class="muted">Every picture is a <b>face seen from the side</b>, looking right. The nose and lips are on the right. The throat is on the left.</p>
@@ -619,7 +661,7 @@ function tourMouth(){
 }
 
 function tourExtra(){
-  renderBar("Sindhi's 4 extra letters","Guide 3 of 3");
+  renderBar("Sindhi's special letters","Guide 3 of 3");
   $("view").innerHTML = `
     <h2>Sindhi has 4 extra letters</h2>${TR("4 وڌيڪ اکر","4 वधीक अखर")}
     <p>Hindi does not have these sounds. You say them every day: ${S("ڳ ڄ ڏ ٻ")}.</p>
@@ -633,31 +675,97 @@ function tourExtra(){
 }
 
 /* The 52 Sindhi letters in Arabic-script order: [Arabic, Devanagari, lesson, same-sound letter] */
-const ABC=[["ا","अ / आ",8],["ب","ब",5],["ٻ","ॿ",5],["ڀ","भ",5],["ت","त",4],["ٿ","थ",4],["ٽ","ट",3],["ٺ","ठ",3],["ث","स",6,"س"],["پ","प",5],
- ["ج","ज",2],["ڄ","ॼ",2],["جھ","झ",2],["ڃ","ञ",2],["چ","च",2],["ڇ","छ",2],["ح","ह",6,"ه"],["خ","ख़",7],["د","द",4],["ڌ","ध",4],
- ["ڏ","ॾ",3],["ڊ","ड",3],["ڍ","ढ",3],["ذ","ज़",7,"ز"],["ر","र",6],["ڙ","ड़",7],["ز","ज़",7],["ژ","झ़",0],["س","स",6],["ش","श",6],
- ["ص","स",6,"س"],["ض","ज़",7,"ز"],["ط","त",4,"ت"],["ظ","ज़",7,"ز"],["ع","अ",8,"ا"],["غ","ग़",7],["ف","फ़",7],["ڦ","फ",5],["ق","क़",7],["ڪ","क",1],
- ["ک","ख",1],["گ","ग",1],["ڳ","ॻ",1],["گھ","घ",1],["ڱ","ङ",1],["ل","ल",6],["م","म",5],["ن","न",4],["ڻ","ण",3],["و","व",6],["ه","ह",6],["ي","य",6]];
+const ABC=[
+ ["ا","अ / आ",8,"","a / aa","as in \"father\""],["ب","ब",5,"","b","as in \"bat\""],["ٻ","ॿ",5,"","ɓ","b while gulping air in"],["ڀ","भ",5,"","bh","b + a puff of air"],
+ ["ت","त",4,"","t","soft t, tongue on teeth"],["ٿ","थ",4,"","th","soft t + a puff of air"],["ٽ","ट",3,"","ṭ","hard t, tongue curled back"],["ٺ","ठ",3,"","ṭh","hard t + a puff of air"],
+ ["ث","स",6,"س","s","same sound as س"],["پ","प",5,"","p","as in \"pen\""],["ج","ज",2,"","j","as in \"jam\""],["ڄ","ॼ",2,"","ʄ","j while gulping air in"],
+ ["جھ","झ",2,"","jh","j + a puff of air"],["ڃ","ञ",2,"","ny","as in \"canyon\""],["چ","च",2,"","ch","as in \"chin\""],["ڇ","छ",2,"","chh","ch + a puff of air"],
+ ["ح","ह",6,"ه","h","same sound as ه"],["خ","ख़",7,"","kh","throaty, like \"loch\""],["د","द",4,"","d","soft d, tongue on teeth"],["ڌ","ध",4,"","dh","soft d + a puff of air"],
+ ["ڏ","ॾ",3,"","ɗ","d while gulping air in"],["ڊ","ड",3,"","ḍ","hard d, tongue curled back"],["ڍ","ढ",3,"","ḍh","hard d + a puff of air"],["ذ","ज़",7,"ز","z","same sound as ز"],
+ ["ر","र",6,"","r","rolled r"],["ڙ","ड़",7,"","ṛ","quick r, tongue curled back"],["ز","ज़",7,"","z","as in \"zoo\""],["ژ","झ़",0,"","zh","as in \"measure\" (rare)"],
+ ["س","स",6,"","s","as in \"sun\""],["ش","श",6,"","sh","as in \"shop\""],["ص","स",6,"س","s","same sound as س"],["ض","ज़",7,"ز","z","same sound as ز"],
+ ["ط","त",4,"ت","t","same sound as ت"],["ظ","ज़",7,"ز","z","same sound as ز"],["ع","अ",8,"ا","a","a vowel, like ا"],["غ","ग़",7,"","gh","throaty, like French \"r\""],
+ ["ف","फ़",7,"","f","as in \"fan\""],["ڦ","फ",5,"","ph","p + a puff of air (not f)"],["ق","क़",7,"","q","k from deep in the throat"],["ڪ","क",1,"","k","as in \"skip\""],
+ ["ک","ख",1,"","kh","k + a puff of air"],["گ","ग",1,"","g","as in \"go\""],["ڳ","ॻ",1,"","ɠ","g while gulping air in"],["گھ","घ",1,"","gh","g + a puff of air"],
+ ["ڱ","ङ",1,"","ng","as in \"sing\""],["ل","ल",6,"","l","as in \"lip\""],["م","म",5,"","m","as in \"man\""],["ن","न",4,"","n","as in \"no\""],
+ ["ڻ","ण",3,"","ṇ","n, tongue curled back"],["و","व",6,"","v / w","also oo or o as a vowel"],["ه","ह",6,"","h","as in \"hat\""],["ي","य",6,"","y","also ee or e as a vowel"]];
+const EX=[
+ ["اَڄ","अॼु","today"],["باهه","बाहि","fire"],["ٻار","ॿारु","child"],["ڀاءُ","भाउ","brother"],["تارو","तारो","star"],["ٿڌو","थधो","cold"],["ٽوپي","टोपी","cap"],["ٺيڪ","ठीकु","okay"],
+ ["ثابت","साबित","proven"],["پاڻي","पाणी","water"],["جانور","जानवरु","animal"],["ڄڀ","ॼिभ","tongue"],["جهنڊو","झंडो","flag"],["اڃا","अञा","still, yet"],["چانهه","चांहि","tea"],["ڇوڪرو","छोकरो","boy"],
+ ["حال","हालु","condition"],["خبر","ख़बर","news"],["دل","दिलि","heart"],["ڌرتي","धरती","earth"],["ڏند","ॾंद","teeth"],["ڊپ","डपु","fear"],["ڍڳو","ढॻो","ox"],["ذائقو","ज़ाइक़ो","taste"],
+ ["رات","राति","night"],["ڪڙو","कड़ो","bitter"],["زمين","ज़मीन","land"],["ٽيليويژن","टेलीविझ़न","television"],["سج","सिजु","sun"],["شهر","शहरु","city"],["صاف","साफ़","clean"],["ضرور","ज़रूर","surely"],
+ ["طوطو","तोतो","parrot"],["ظلم","ज़ुल्मु","injustice"],["عيد","ईद","Eid"],["غريب","ग़रीबु","poor"],["فقير","फ़क़ीरु","fakir"],["ڦل","फलु","fruit"],["قلم","क़लमु","pen"],["ڪتاب","किताबु","book"],
+ ["کير","खीरु","milk"],["گاڏي","गाॾी","vehicle"],["ڳوٺ","ॻोठु","village"],["گهر","घरु","home"],["سڱ","सङु","horn"],["لٺ","लठि","stick"],["ماني","मानी","bread"],["نڪ","नकु","nose"],
+ ["ڪڻڪ","कणक","wheat"],["وڻ","वणु","tree"],["هٿ","हथु","hand"],["يار","यारु","friend"]];
+
+/* Letter card: slides up when a letter is tapped in the alphabet list. */
+function openLetter(i){
+  const [a,d,l,same,rom,how]=ABC[i], [ea,ed,em]=EX[i], sp=/[ٻڄڏڳ]/.test(a);
+  closeLetter();
+  const back=document.createElement("div"); back.className="sheet-back"; back.id="sheetBack";
+  back.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Letter ${i+1}: ${a} is ${d}">
+    <div class="sheet-top"><span class="eyebrow">Letter ${i+1} of ${ABC.length}${sp?' · <span class="badge" style="margin:0">Sindhi only</span>':""}</span><button class="sheet-x" id="sheetX" aria-label="Close">✕</button></div>
+    <div class="sheet-pair"><span class="sheet-a">${S(a)}</span><span class="sheet-arrow">→</span><span class="sheet-d">${d}</span></div>
+    <div class="sheet-say"><b>Say it: ${rom}</b><span>${how}</span>${same?`<span>Devanagari uses ${D(d)} for ${S(same)} and ${S(a)} alike.</span>`:""}</div>
+    <div class="sheet-ex"><span class="eyebrow">Example word</span>
+      <div class="sheet-pair small"><span class="sheet-a">${S(ea)}</span><span class="sheet-arrow">→</span><span class="sheet-d">${ed}</span></div>
+      <span class="muted">means "${em}"</span></div>
+    ${l?`<button class="btn primary big" id="sheetLesson">Open lesson ${l} →</button>`:`<p class="muted">This letter is rare, so no lesson teaches it.</p>`}
+    <div class="sheet-nav"><button class="btn" id="sheetPrev" ${i===0?"disabled":""}>← Previous</button><button class="btn" id="sheetNext" ${i===ABC.length-1?"disabled":""}>Next →</button></div>
+  </div>`;
+  document.body.appendChild(back);
+  back.onclick=e=>{ if(e.target===back) closeLetter(); };
+  $("sheetX").onclick=closeLetter;
+  $("sheetPrev").onclick=()=>openLetter(i-1);
+  $("sheetNext").onclick=()=>openLetter(i+1);
+  const sl=$("sheetLesson"); if(sl) sl.onclick=()=>{ closeLetter(); openLesson(l-1); };
+  $("sheetX").focus();
+}
+function closeLetter(){ const b=$("sheetBack"); if(b) b.remove(); }
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeLetter(); });
+
+/* Vowel marks and signs: [Arabic example, Devanagari example, name, Arabic name, what it does] */
+const MARKS=[
+ ["ڪَ","क","Zabar","زبر","Short <b>a</b>. Devanagari needs <b>no mark</b>: every letter already says \"a\"."],
+ ["ڪِ","कि","Zer","زير","Short <b>i</b>. Written <b>before</b> the letter, said after it."],
+ ["ڪُ","कु","Pesh","پيش","Short <b>u</b>. The mark <b>hangs below</b> the letter."],
+ ["ڪْ","क्","Jazm","جزم","<b>No vowel</b>. The small slash is called <b>halant</b>."],
+ ["پڪّو","पक्को","Shad","شد","<b>Double letter</b>. Write it twice, the first one cut in half."],
+ ["آ","आ","Madd","مد","The wavy line on alif: long <b>aa</b> at the start of a word."],
+ ["ڀاءُ","भाउ","Hamzo","همزو","Devanagari has <b>no hamza</b>. It just writes the vowel."],
+ ["مان","मां","Noon ghunno","نون غنو","<b>Nasal</b> sound, like the end of \"song\". In Devanagari: a <b>dot on top</b>."],
+ ["ڪا","का","Alif as a vowel","الف","Long <b>aa</b>."],
+ ["ڪي","की · के","Ye as a vowel","ي","Long <b>ee</b> or <b>e</b>. Devanagari has a different mark for each."],
+ ["ڪو","कू · को","Waw as a vowel","و","Long <b>oo</b> or <b>o</b>. Devanagari has a different mark for each."]];
 function alphabetScreen(){
   renderBar("All 52 letters");
   const shapes=new Set(ABC.map(x=>x[1])).size;
   $("view").innerHTML=`
     <div><h2>The Sindhi alphabet</h2>${TR("الف ب","वर्णमाला")}</div>
     <div class="card">
-      <ol class="why" style="list-style:decimal;padding-left:1.2em">
-        <li>Each tile shows the <b>Arabic letter</b> on top and its <b>Devanagari shape</b> below.</li>
-        <li><b class="g-hit">Red tiles</b> are the <b>4 extra Sindhi letters</b>.</li>
-        <li>Some Arabic letters sound the same, like ${S("س")} ${S("ث")} ${S("ص")}. In Devanagari they <b>share one shape</b>: ${D("स")}. So the 52 letters need only <b>${shapes} shapes</b>.</li>
-        <li><b>Tap a tile</b> to open the lesson that teaches it.</li>
+      <ol class="steps">
+        <li>Each row shows a letter in <b>Arabic script</b>, then in <b>Devanagari</b>, then <b>how to say it</b>.</li>
+        <li><b class="g-hit">Pink rows</b> are the <b>4 extra Sindhi letters</b>. You make them by pulling air <b>in</b>, like a small gulp.</li>
+        <li>"A puff of air" means a breathy h-sound right after the letter, like the p in "pin".</li>
+        <li>Some Arabic letters sound the same, like ${S("س ث ص")}. In Devanagari they <b>share one shape</b>: ${D("स")}. So 52 letters need only <b>${shapes} shapes</b>.</li>
+        <li><b>Tap any letter</b> to see an <b>example word</b>.</li>
       </ol>
     </div>
-    <div class="abc-grid">${ABC.map(([a,d,l,same],i)=>{
-      const sp=/[ٻڄڏڳ]/.test(a);
-      return `<button class="abc${sp?" sp":""}${same?" same":""}" ${l?`data-l="${l-1}"`:"disabled"} aria-label="${a} is ${d}">
-        <span class="abc-n">${i+1}</span><span class="abc-a" dir="rtl" lang="sd">${a}</span><span class="abc-d">${d}</span>
-        <span class="abc-l">${same?`same as ${S(same)}`:l?`Lesson ${l}`:"rare"}</span></button>`; }).join("")}</div>
-    <p class="muted" style="font-size:.92rem">Sindhi also uses ${S("ء")} (hamza). Some books count it as a letter too.</p>`;
-  document.querySelectorAll(".abc[data-l]").forEach(b=>b.onclick=()=>openLesson(+b.dataset.l));
+    <h3>52 letters ${TR("52 اکر","52 अखर")}</h3>
+    <div class="tbl-wrap"><table class="abc-t">
+      <thead><tr><th>#</th><th>Arabic</th><th>Devanagari</th><th>Say it</th><th>Lesson</th></tr></thead>
+      <tbody>${ABC.map(([a,d,l,same,rom,how],i)=>{ const sp=/[ٻڄڏڳ]/.test(a);
+        return `<tr class="go${sp?" special":""}${same?" same":""}" data-i="${i}" tabindex="0" role="button" aria-label="${a}, ${d}, ${rom}. Show example">
+          <td class="n">${i+1}</td><td class="a">${S(a)}</td><td class="d">${d}</td>
+          <td class="say-it"><b>${rom}</b><small>${how}</small></td><td class="l">${l?l:"–"}</td></tr>`; }).join("")}</tbody>
+    </table></div>
+    <p class="muted" style="font-size:.92rem">Sindhi also uses ${S("ء")} (hamza). Some books count it as a letter too.</p>
+    <h3>Vowel marks and signs ${TR("اعراب","मात्रा")}</h3>
+    <p class="muted">Zabar, zer, pesh and friends. Here's what each one becomes in Devanagari.</p>
+    <div class="marks">${MARKS.map(([a,d,name,an,what])=>`
+      <div class="mark"><div class="mark-pair"><span class="mark-a">${S(a)}</span><span class="mark-arrow">→</span><span class="mark-d">${d}</span></div>
+      <div class="mark-txt"><b>${name}</b> ${S("("+an+")")}<p>${what}</p></div></div>`).join("")}</div>`;
+  document.querySelectorAll(".abc-t tr.go").forEach(r=>{ const go=()=>openLetter(+r.dataset.i); r.onclick=go; r.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }; });
 }
 
 function outlineScreen(){
@@ -744,7 +852,7 @@ function studioHome(){
     <h2>Record your voice</h2>
     <div class="card">
       <h3>How it works</h3>
-      <ol class="why" style="list-style:decimal;padding-left:1.2em">
+      <ol class="steps">
         <li>Find a <b>quiet room</b>. Hold the phone about <b>20 cm</b> from your mouth.</li>
         <li>Tap <b>● Record</b>, say it <b>once</b>, tap <b>■ Stop</b>. Recording stops by itself after <b>8 seconds</b>.</li>
         <li>Tap <b>▶ Play</b> to check. Not happy? Just record again.</li>
@@ -940,7 +1048,7 @@ function renderLessonScreen(){
       </div>
       ${quizHTML()}
       <div class="lesson-foot">
-        <button class="btn ${isDone?"soft":"primary"} big" id="markBtn">${isDone?"✓ Done · tap to undo":"4 · Mark lesson done"}</button>
+        <button class="btn ${isDone?"soft":"primary"} big" id="markBtn">${isDone?"✓ Done · tap to undo":"Mark lesson done ✓"}</button>
         <div class="toolbar">
           <button class="tool" data-t="back" ${cur===0?"disabled":""}><span class="i">←</span>Back</button>
           <button class="tool" data-t="repeat"><span class="i">↺</span>Repeat</button>
@@ -986,7 +1094,11 @@ window.addEventListener("hashchange",()=>{ if(location.hash==="#studio"){ stack=
 render();
 </script>
 <script>
-if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{})); }
+if('serviceWorker' in navigator){
+  const hadController=!!navigator.serviceWorker.controller; let reloaded=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{ if(hadController && !reloaded){ reloaded=true; location.reload(); } });
+  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}));
+}
 </script>
 </body>
 </html>
