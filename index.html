@@ -197,6 +197,7 @@ tbody tr:nth-child(even):not(.special) td{background:var(--bg)}
 .frog-btn.hop .frog{animation:hop .6s ease}
 .cel-frog{width:96px;height:96px}
 .cel-frog .frog{width:84px;animation:hop 1.2s ease-in-out .3s 2}
+a.btn{display:block;text-decoration:none;color:inherit}
 .foot-name{margin:0;display:flex;align-items:center;justify-content:center;gap:4px;font-size:.8rem;color:var(--muted)}
 @keyframes hop{0%{transform:none}30%{transform:translateY(-9px) rotate(-8deg)}55%{transform:none}72%{transform:translateY(-3px)}100%{transform:none}}
 /* Text size and calm mode */
@@ -789,7 +790,7 @@ const LESSONS = [
           `Add a Sindhi or Hindi <b>Devanagari keyboard</b> on your phone. Type what you hear and check the shape.`],
   wordsLabel:"Read it", words:[["दोस्तु","دوستُ","friend"],["ॻाल्हि","ڳالھِ","talk"]]}
 ];
-const APP_VERSION = "45";
+const APP_VERSION = "46";
 const TOTAL = LESSONS.reduce((s,l)=>s+l.min,0);
 const fmt = m => `${Math.floor(m/60)} h ${m%60} min`;
 const stageMin = s => LESSONS.filter(l=>l.stage===s).reduce((x,l)=>x+l.min,0);
@@ -1920,6 +1921,7 @@ function settingsScreen(){
       <button class="switch${settings.calm?" on":""}" id="calmBtn" role="switch" aria-checked="${!!settings.calm}" aria-label="Calm mode"><span></span></button></div></div>
     <div class="card"><div><h3>The guide</h3>${TR(...SD.guide)}</div><p class="muted">See the 3 short intro pages again.</p><button class="btn soft big" id="setGuide">Open the guide →</button></div>
     <div class="card"><div><h3>Start over</h3>${TR(...SD.over)}</div><p class="muted">Clears ${many?`<b>${esc(personName())}'s</b>`:"your"} finished lessons and place. Settings stay.</p><div id="resetBox"><button class="btn big" id="resetBtn">Reset my progress</button></div></div>
+    <div class="card"><div><h3>Privacy</h3>${TR("رازداري","राज़दारी")}</div><p class="muted">Dedar collects nothing. Your progress, names and recordings stay on this phone.</p><a class="btn soft big" id="privLink" href="privacy.html">Read the privacy policy →</a></div>
     <p class="foot-name"><button class="frog-btn small" aria-label="Dedar means frog. Tap me.">${FROG}</button>Dedar · version ${APP_VERSION}</p>`;
   $("addPerson").onclick=()=>addForm("addBox");
   document.querySelectorAll(".mini").forEach(b=>b.onclick=()=>{
