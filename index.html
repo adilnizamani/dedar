@@ -61,6 +61,8 @@ button{font:inherit;color:inherit}
 .tr{font-weight:400;color:var(--muted);white-space:nowrap}
 .tr .ar{font-size:1.08em}
 .tr{letter-spacing:0;text-transform:none}
+.tr{white-space:normal}
+.tr>bdi,.tr>.dev{white-space:nowrap}
 .tr2{font-size:6.5px;font-weight:400;fill:var(--muted)}
 .sv-ar{font-family:var(--arab)} .sv-dv{font-family:var(--dev)}
 .intro-ex{display:flex;flex-direction:column;gap:6px}
@@ -168,8 +170,8 @@ body.first .nav{display:none}
 .home-top{display:flex;flex-direction:column;gap:8px}
 .purpose{margin:0;color:var(--muted)}
 .days{margin:0;font-size:.92rem;color:var(--muted)}
-.gear{margin-left:auto;width:40px;height:40px;border-radius:12px;border:0;background:var(--bg);cursor:pointer;display:grid;place-items:center;flex:none}
-.gear svg{width:22px;height:22px;fill:none;stroke:var(--fg);stroke-width:2;stroke-linecap:round}
+.gear{height:40px;width:40px;border-radius:12px;border:0;background:var(--bg);cursor:pointer;display:grid;place-items:center;padding:0;flex:none}
+.gear svg{width:20px;height:20px;fill:none;stroke:var(--fg);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 /* Focus mode */
 .lesson-steps{padding:14px 18px 0;display:flex;flex-direction:column;gap:4px}
 .stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
@@ -253,6 +255,120 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .btn:active,.q-opt:active:not(:disabled),.m-opt:active:not(:disabled),.tool:active,.cmd:active,.tour-item:active,.ol-row:active,.rd-w:active,.seg-b:active{transform:scale(.97)}
 .abc-tip{margin:0;color:var(--muted)}
 .abc-help .steps{margin-top:8px}
+.badge{white-space:nowrap}
+td.s .badge{display:inline-block;margin:4px 0 0;text-transform:none;letter-spacing:0;font-size:.78rem;max-width:100%}
+.celebrate .prog-meta{align-self:stretch;gap:12px}
+.write-box .reveal{align-self:center}
+details.fold summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px}
+details.fold summary::-webkit-details-marker{display:none}
+details.fold summary::after{content:"Show ▾";font-size:.85rem;font-weight:700;color:var(--blue);white-space:nowrap}
+details.fold[open] summary::after{content:"Hide ▴"}
+details.fold summary h3{margin:0}
+.lesson-mouth{flex-wrap:nowrap!important}
+.lesson-mouth svg{width:92px!important}
+/* Profiles */
+.who-list{display:flex;flex-direction:column;gap:10px}
+.who{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:14px;cursor:pointer}
+.who:hover{border-color:var(--blue)}
+.who .go{margin-left:auto;color:var(--blue);font-weight:700;white-space:nowrap;padding-left:8px}
+.who-t{display:flex;flex-direction:column;min-width:0}
+.who-t b{font-size:1.1rem}
+.who-t small{color:var(--muted)}
+.av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:none;background:#e8f0fd;border:2px solid var(--line)}
+.av svg{width:80%;height:auto;display:block;margin-top:2px}
+
+.who-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:10px}
+.who-row:first-child{border-top:0;padding-top:0}
+.who-acts{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.mini{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:6px 10px;font-size:.85rem;font-weight:700;cursor:pointer}
+.add-form{display:flex;flex-direction:column;gap:8px;width:100%}
+.add-form label{font-weight:700;font-size:.92rem}
+.name-in{font:inherit;font-size:1.05rem;padding:10px 12px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--fg)}
+.name-in:focus{outline:none;border-color:var(--blue)}
+.switch-link{align-self:flex-start;background:none;border:0;padding:0;color:var(--blue);font-weight:700;font-size:.9rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.bar-demo{display:flex;flex-direction:column;gap:8px;background:var(--blue-soft);border-radius:14px;padding:10px}
+.bar-demo .tool{cursor:default}
+.bar-caps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;text-align:center;font-size:.8rem;line-height:1.3}
+.bar-caps > span{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+.bar-caps .tr{white-space:normal;font-size:.72rem;display:block}
+details.fold summary > div{display:flex;flex-direction:column}
+.me-chip{margin-left:auto;display:flex;align-items:center;gap:6px;height:40px;padding:0 10px 0 5px;border-radius:99px;border:2px solid var(--line);background:var(--surface);cursor:pointer;font-weight:700;font-size:.9rem;color:var(--fg);max-width:46%;min-width:0}
+.me-chip:hover{border-color:var(--blue)}
+.me-chip .av{width:30px;height:30px;border-width:1px}
+.me-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.me-chip .chev{color:var(--muted);font-size:.8rem}
+.appbar-in .gear{margin-left:0}
+@media (max-width:380px){.appbar-in:has(.me-chip) .appbar-title{display:none}.me-chip{max-width:62%}}
+.who.now{border-color:var(--blue);background:var(--blue-soft)}
+.who.now .go{color:var(--blue)}
+/* Sindhi under every key button, so learners who don't read English can follow */
+.btn .sub{display:block;font-size:.78rem;font-weight:400;opacity:.9;margin-top:2px;line-height:1.35}
+.btn .sub .ar{font-size:1.02rem}
+.reveal .sub{display:inline;margin-left:6px;font-weight:400;font-size:.82rem}
+.tsub{display:block;font-size:.66rem;font-weight:400;line-height:1.25;opacity:.85;margin-top:1px;white-space:nowrap}
+.tsub .ar{font-size:.78rem}
+.nav .tsub{font-size:.6rem}
+.nav .tsub .ar{font-size:.72rem}
+.eyebrow .tr{font-size:.95rem}
+.q-ask .tr{font-weight:400}
+.m-top .tr{font-weight:400}
+.m-top{gap:10px;align-items:flex-start}
+.m-top > span:last-child{white-space:nowrap}
+.badge{padding:3px 10px!important;line-height:1.4}
+/* Breathing room for the two scripts */
+.tr{line-height:1.75}
+.tr .sep{margin:0 .45em;opacity:.7}
+.tr .ar{font-size:1.14em}
+.lt{display:flex;flex-direction:column;align-items:flex-start;color:var(--muted);line-height:1.55;margin-top:4px;gap:1px}
+.lt .ar{font-size:1.22rem}
+.lt .dev{font-size:1.04rem}
+.lesson-head .lt .ar{font-size:1.3rem}
+.lesson-head .lt .dev{font-size:1.1rem}
+.ol-txt .lt{margin-top:0}
+.ol-txt .lt .ar{font-size:1.12rem}
+.ol-txt .lt .dev{font-size:.98rem}
+/* The Sindhi title is part of the title: its own soft box, brighter text */
+.lt{background:var(--blue-soft);border:1px solid var(--line);border-radius:12px;padding:6px 12px;color:var(--fg)!important;align-self:flex-start;max-width:100%}
+.lt .ar,.lt .dev{opacity:.92}
+.lesson-head .lt{background:var(--surface);margin-top:6px}
+.ol-txt .lt{background:none;border:0;padding:0;color:var(--muted)!important}
+/* Extra info looks like extra info: small chips */
+.next-up{gap:6px!important}
+.next-up > b{font-size:1.3rem}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.mchip{display:inline-flex;align-items:center;gap:5px;font-size:.85rem;font-weight:700;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+.mchip svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.mchip.on{color:var(--blue);border-color:var(--blue)}
+/* Bottom bar Sindhi: two lines, larger, bolder, full strength */
+.nav button{gap:1px!important;padding:7px 2px 8px!important;line-height:1.15}
+.nsub{display:flex;flex-direction:column;align-items:center;line-height:1.25;margin-top:1px}
+.nsub .ar{font-size:.95rem;font-weight:600;line-height:1.45}
+.nsub .dev{font-size:.76rem;font-weight:600}
+/* Lesson buttons: same treatment */
+.tsub{opacity:1!important;font-size:.72rem!important}
+.tsub .ar{font-size:.88rem!important;font-weight:600}
+.tsub .dev{font-weight:600}
+.tour-next{bottom:calc(var(--nav-h,78px) + 8px)!important}
+.toast{bottom:calc(var(--nav-h,78px) + 12px)!important}
+.view{padding-bottom:calc(var(--nav-h,78px) + 48px)!important}
+.who .av{width:54px;height:54px}
+.who .av svg{width:84%}
+.tp-label{font-weight:700;font-size:.92rem}
+.tp-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.tp{aspect-ratio:1;border-radius:14px;border:2px solid var(--line);background:#e8f0fd;cursor:pointer;display:grid;place-items:center;padding:4px;min-width:0}
+.tp svg{width:100%;height:auto}
+.tp.on{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+.ex-pic .topi{width:150px!important}
+/* Readability pass */
+.q-opt{font-size:2.5rem!important;line-height:1.7!important}
+.q-opt.dev-opt{font-size:2.1rem!important;line-height:1.5!important}
+p .ar,li .ar,.hint .ar,.lm-txt .ar{font-size:1.15em}
+.tricks .ar{font-size:1.2rem!important}
+.abc-t td.a{width:24%}
+.abc-t td.d{width:28%}
+.abc-t td.say-it small{font-size:.86rem}
+.abc-t td.say-it small .ar{font-size:1.1em}
+.abc-les{display:inline-block;margin-top:3px;font-size:.78rem;font-weight:700;color:var(--blue)}
 .skip{background:none;border:0;padding:6px;color:var(--indigo);font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer;align-self:center}
 ol.steps{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:8px}
 ol.steps li{padding-left:2px}
@@ -507,9 +623,10 @@ td.h{width:56px;text-align:center}
 
 /* Quiz */
 .quiz{border-top:3px solid var(--ochre);background:var(--c-soft);padding:18px;display:flex;flex-direction:column;gap:14px}
-.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.quiz-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.quiz-top > div{display:flex;flex-direction:column}
 .quiz-top b{font-family:var(--display);font-size:1.15rem}
-.quiz-top span{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.quiz-top .mchip{font-variant-numeric:tabular-nums;white-space:nowrap}
 .q-prompt{font-family:var(--dev);font-size:3.2rem;font-weight:600;line-height:1.2;text-align:center;background:var(--surface);border-radius:14px;padding:10px}
 .q-ask{text-align:center;font-weight:700}
 .q-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -540,7 +657,16 @@ td.h{width:56px;text-align:center}
 const LONE = t => t.replace(/(^|[\s(+=])([\u0900-\u0903\u093A-\u094F\u064B-\u0652])/g, "$1\u25CC$2");
 const S = t=>`<bdi class="ar" dir="rtl" lang="sd">${LONE(t)}</bdi>`;
 const D = t=>`<span class="dev">${LONE(t)}</span>`;
-const TR = (sd,dv)=>`<span class="tr">(${S(sd)} · ${D(dv)})</span>`;
+const TR = (sd,dv)=>`<span class="tr">(${S(sd)}<span class="sep">·</span><wbr>${D(dv)})</span>`;
+const SD={start:["شُروع ڪَريو","शुरू करियो"],cont:["جاري رَکو","जारी रखो"],next:["اَڳتي","अॻिते"],back:["پوئتي","पोइते"],done:["پورو","पूरो"],
+  home:["گھرُ","घरु"],guide:["رَهنُمائي","रहनुमाई"],letters:["اَکَر","अखर"],lessons:["سَبَق","सबक़"],cont2:["جاري","जारी"],
+  answer:["جَوابُ ڏِسو","जवाबु ॾिसो"],quiz:["اِمتِحان","इम्तिहान"],repeat:["ٻيهَر","ॿीहर"],pause:["ساهي","साही"],open:["سَبَق کوليو","सबक़ खोलियो"],
+  step:["قَدَم","क़दम"],learners:["پَڙهندڙ","पढ़ंदड़"],which:["هيءُ ڪهڙو آهي؟","हीउ कहिड़ो आहे?"],same:["ساڳيو ڪهڙو آهي؟","साॻियो कहिड़ो आहे?"],
+  example:["مِثال","मिसाल"],settings:["سيٽنگ","सेटिंग"],size:["اَکَرَن جي ماپ","अखरनि जी माप"],calm:["آرام","आराम"],over:["نَئين سِر","नएं सिर"],
+  left:["جِتي ڇَڏيو هو","जिते छॾियो हो"],close:["بَند ڪَريو","बंद करियो"],score:["نَمبَر ڏِسو","नंबर ॾिसो"],again:["ٻيهَر ڪَريو","ॿीहर करियो"],first:["پَهريون سَبَق","पहिरियों सबक़"],review:["ٻيهَر ڏِسو","ॿीहर ॾिसो"],add:["ماڻهو وَڌايو","माणहू वधायो"]};
+const ARW = t=>String(t).replace(/[\u0600-\u06FF]+/g,m=>S(m));
+const SUB = (k)=>`<span class="sub">${S(SD[k][0])} · ${D(SD[k][1])}</span>`;
+const LT = (i)=>`<span class="lt"><bdi class="ar" dir="rtl" lang="sd">سَبَق ${i+1}: ${LESSONS[i].sd}</bdi><span class="dev">सबक़ ${i+1}: ${LESSONS[i].dv}</span></span>`;
 const MISAAL = ex=>`<span class="misaal"><b>Misaal</b> ${TR("مِثال","मिसाल")}: ${ex}</span>`;
 
 const STAGES = {
@@ -618,7 +744,7 @@ const LESSONS = [
           `Add a Sindhi or Hindi <b>Devanagari keyboard</b> on your phone. Type what you hear and check the shape.`],
   wordsLabel:"Read it", words:[["दोस्तु","دوستُ","friend"],["ॻाल्हि","ڳالھِ","talk"]]}
 ];
-const APP_VERSION = "30";
+const APP_VERSION = "39";
 const TOTAL = LESSONS.reduce((s,l)=>s+l.min,0);
 const fmt = m => `${Math.floor(m/60)} h ${m%60} min`;
 const stageMin = s => LESSONS.filter(l=>l.stage===s).reduce((x,l)=>x+l.min,0);
@@ -630,23 +756,139 @@ const TOUR = [
  {k:"extra", title:"Sindhi's special letters", sd:"4 وَڌيڪ اَکَر", dv:"4 वधीक अखर", sub:"4 sounds that Hindi doesn't have", min:1}
 ];
 
+/* Sindhi topi, drawn from reference photos: wide, low, domed top, double-arch front cut with a centre point, mirror circles, cord edging. */
+const TOPIS=[
+ {n:"Red",   body:"#b3262e",top:"#9e1f27",rim:"#f2b929",cord:"#f6ead0",r1:"#f2b929",r2:"#7b3fb0",tri:"#1f8a4a"},
+ {n:"Green", body:"#3f8463",top:"#357253",rim:"#19a3a3",cord:"#eef2f4",r1:"#1d1d22",r2:"#e0b938",tri:"#c9302c"},
+ {n:"Brown", body:"#7a4e25",top:"#69421e",rim:"#dba648",cord:"#ecdcb9",r1:"#dba648",r2:"#7b3fb0",tri:"#dba648"},
+ {n:"Black", body:"#26262e",top:"#1c1c23",rim:"#e3a93b",cord:"#e3a93b",r1:"#e3a93b",r2:"#a33a4c",tri:"#e3a93b"},
+ {n:"Blue",  body:"#2f5fa8",top:"#285090",rim:"#f2b929",cord:"#eef2f4",r1:"#f2b929",r2:"#eef2f4",tri:"#c9302c"},
+ {n:"Rose",  body:"#8f2d4f",top:"#7c2643",rim:"#ff9fb8",cord:"#f8e4eb",r1:"#ff9fb8",r2:"#f2b929",tri:"#19a3a3"}];
+const TOPI_BODY="M4 15 L5 50 Q15 57 29 58.5 C30 46 37 38.5 43 40 C46.5 41 48.6 44 50 47.5 C51.4 44 53.5 41 57 40 C63 38.5 70 46 71 58.5 Q85 57 95 50 L96 15 A46 12 0 0 1 4 15 Z";
+const TOPI_EDGE="M5 50 Q15 57 29 58.5 C30 46 37 38.5 43 40 C46.5 41 48.6 44 50 47.5 C51.4 44 53.5 41 57 40 C63 38.5 70 46 71 58.5 Q85 57 95 50";
+function topiG(i,detail=true){
+  const t=TOPIS[((i%TOPIS.length)+TOPIS.length)%TOPIS.length];
+  const mir=(x,y,r,c)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/><circle cx="${x}" cy="${y}" r="${(r*.48).toFixed(2)}" fill="#e6eef4"/>`;
+  const side=[[11,33,4.2,t.r1],[21,41,4.2,t.r2],[13,47,3.4,t.r2],[89,33,4.2,t.r1],[79,41,4.2,t.r2],[87,47,3.4,t.r2],[34,31,3.6,t.r2],[66,31,3.6,t.r2],[50,33,3.8,t.r1]];
+  const top=[[27,12,3.6,t.r2],[50,8.5,3.8,t.r1],[73,12,3.6,t.r2],[38,18,3.2,t.r1],[62,18,3.2,t.r1]];
+  const tris=detail?`<g fill="${t.tri}"><path d="M27 35 l3 -2.6 l0 5.2z"/><path d="M73 35 l-3 -2.6 l0 5.2z"/><path d="M50 15.5 l-2.6 -2.6 l5.2 0z"/></g>`:"";
+  return `<path d="${TOPI_BODY}" fill="${t.body}"/>
+  <path d="M5 22 A45 12 0 0 0 95 22" fill="none" stroke="${t.rim}" stroke-width="1.4" stroke-dasharray="1.6 1.6"/>
+  ${side.map(a=>mir(...a)).join("")}
+  <ellipse cx="50" cy="15" rx="46" ry="12" fill="${t.top}" stroke="${t.rim}" stroke-width="1.6"/>
+  ${top.map(a=>mir(...a)).join("")}${tris}
+  <path d="${TOPI_EDGE}" fill="none" stroke="${t.cord}" stroke-width="2" stroke-linecap="round" stroke-dasharray="2.2 1.4"/>`;
+}
+function topiSVG(i,cls="topi",label="A Sindhi topi"){ return `<svg class="${cls}" viewBox="0 0 100 62" role="img" aria-label="${label}">${topiG(i)}</svg>`; }
+
 /* State */
 let done=new Set(), cur=0, seen=new Set(), quiz=null, screen="home", stack=[], pausedMsg=false;
 let step=0, welcomed=false, days=new Set(), sessionDone=0, settings={size:"m",calm:false}, weak={};
-try{
-  done=new Set(JSON.parse(localStorage.getItem("dedar-done")||"[]")); cur=+localStorage.getItem("dedar-cur")||0; seen=new Set(JSON.parse(localStorage.getItem("dedar-tour")||"[]"));
-  step=+localStorage.getItem("dedar-step")||0; welcomed=localStorage.getItem("dedar-welcomed")==="1";
-  days=new Set(JSON.parse(localStorage.getItem("dedar-days")||"[]")); settings=Object.assign(settings,JSON.parse(localStorage.getItem("dedar-settings")||"{}"));
-  weak=JSON.parse(localStorage.getItem("dedar-weak")||"{}")||{};
-}catch(e){}
-if(!(cur>=0&&cur<LESSONS.length)) cur=0;
-if(!(step>=0&&step<4)) step=0;
-function save(){ try{
-  localStorage.setItem("dedar-done",JSON.stringify([...done])); localStorage.setItem("dedar-cur",String(cur)); localStorage.setItem("dedar-tour",JSON.stringify([...seen]));
-  localStorage.setItem("dedar-step",String(step)); localStorage.setItem("dedar-welcomed",welcomed?"1":"0");
-  localStorage.setItem("dedar-days",JSON.stringify([...days])); localStorage.setItem("dedar-settings",JSON.stringify(settings));
-  localStorage.setItem("dedar-weak",JSON.stringify(weak));
+/* Profiles: several people can learn on one phone. Person 1 keeps the original storage keys, so nobody loses progress. */
+let profiles={list:[{id:"p1",name:""}],active:"p1"}, pickedThisVisit=false;
+try{ const pr=JSON.parse(localStorage.getItem("dedar-profiles")||"null"); if(pr&&Array.isArray(pr.list)&&pr.list.length) profiles=pr; }catch(e){}
+if(!profiles.list.some(x=>x.id===profiles.active)) profiles.active=profiles.list[0].id;
+const PKEYS=["done","cur","tour","step","welcomed","days","settings","weak"];
+const pkey=(k,id=profiles.active)=> id==="p1" ? `dedar-${k}` : `dedar-${id}-${k}`;
+function saveProfiles(){ try{ localStorage.setItem("dedar-profiles",JSON.stringify(profiles)); }catch(e){} }
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function me(){ return profiles.list.find(x=>x.id===profiles.active)||profiles.list[0]; }
+function personName(x=me()){ return x.name || (profiles.list.length>1 ? "Person "+(profiles.list.indexOf(x)+1) : "You"); }
+function doneLine(id){ const n=peekDone(id); return n?`${n} of ${LESSONS.length} lessons done`:"Not started yet"; }
+function peekDone(id){ try{ return JSON.parse(localStorage.getItem(pkey("done",id))||"[]").length; }catch(e){ return 0; } }
+const TOPI_ORDER=[4,0,1,2,5,3];
+function topiOf(x){ if(typeof x.t==="number") return x.t; return TOPI_ORDER[profiles.list.indexOf(x)%TOPI_ORDER.length]; }
+function freeTopi(){ const used=new Set(profiles.list.map(topiOf)); return TOPI_ORDER.find(t=>!used.has(t)) ?? TOPI_ORDER[profiles.list.length%6]; }
+function avatar(x){ return `<span class="av" aria-hidden="true"><svg viewBox="0 0 100 62">${topiG(topiOf(x),false)}</svg></span>`; }
+function topiPicker(id,sel){ return `<div class="tp-row" role="radiogroup" aria-label="Choose a topi" id="${id}">${TOPI_ORDER.map(t=>`<button type="button" class="tp${t===sel?" on":""}" data-t="${t}" role="radio" aria-checked="${t===sel}" aria-label="${TOPIS[t].n} topi"><svg viewBox="0 0 100 62">${topiG(t,false)}</svg></button>`).join("")}</div>`; }
+function bindPicker(id){ const r=$(id); r.querySelectorAll(".tp").forEach(b=>b.onclick=()=>{ r.querySelectorAll(".tp").forEach(x=>{ x.classList.toggle("on",x===b); x.setAttribute("aria-checked",x===b); }); r.dataset.v=b.dataset.t; }); const on=r.querySelector(".tp.on"); if(on) r.dataset.v=on.dataset.t; }
+function loadProfile(){
+  done=new Set(); cur=0; seen=new Set(); step=0; welcomed=false; days=new Set(); settings={size:"m",calm:false}; weak={};
+  try{
+    const g=k=>localStorage.getItem(pkey(k));
+    done=new Set(JSON.parse(g("done")||"[]")); cur=+g("cur")||0; seen=new Set(JSON.parse(g("tour")||"[]"));
+    step=+g("step")||0; welcomed=g("welcomed")==="1";
+    days=new Set(JSON.parse(g("days")||"[]")); settings=Object.assign(settings,JSON.parse(g("settings")||"{}"));
+    weak=JSON.parse(g("weak")||"{}")||{};
+  }catch(e){}
+  if(!(cur>=0&&cur<LESSONS.length)) cur=0;
+  if(!(step>=0&&step<4)) step=0;
+}
+loadProfile();
+function save(){ try{ const w=(k,v)=>localStorage.setItem(pkey(k),v);
+  w("done",JSON.stringify([...done])); w("cur",String(cur)); w("tour",JSON.stringify([...seen]));
+  w("step",String(step)); w("welcomed",welcomed?"1":"0");
+  w("days",JSON.stringify([...days])); w("settings",JSON.stringify(settings)); w("weak",JSON.stringify(weak));
 }catch(e){} }
+function switchTo(id){
+  const ob=$("sheetBack"); if(ob){ ob.dataset.after=""; ob.remove(); }
+  save(); profiles.active=id; saveProfiles(); loadProfile(); applySettings();
+  quiz=null; match=null; review=null; sessionDone=0; pausedMsg=false; stack=[]; pickedThisVisit=true;
+  screen="home"; render(); window.scrollTo(0,0);
+}
+function addPerson(name,myName,t){
+  if(myName!==undefined && myName.trim()){ profiles.list[0].name=myName.trim().slice(0,20); }
+  if(typeof profiles.list[0].t!=="number") profiles.list[0].t=topiOf(profiles.list[0]);
+  const id="p"+Date.now().toString(36);
+  profiles.list.push({id,name:(name||"").trim().slice(0,20),t:typeof t==="number"?t:freeTopi()}); saveProfiles(); switchTo(id);
+}
+function removePerson(id){
+  if(profiles.list.length<2) return;
+  try{ PKEYS.forEach(k=>localStorage.removeItem(pkey(k,id))); }catch(e){}
+  profiles.list=profiles.list.filter(x=>x.id!==id);
+  if(profiles.active===id){ profiles.active=profiles.list[0].id; saveProfiles(); loadProfile(); applySettings(); }
+  else saveProfiles();
+}
+function needPick(){ return profiles.list.length>1 && !pickedThisVisit; }
+/* The little form for adding a person. Asks for your own name too, the first time. */
+function addForm(boxId,onCancel){
+  const box=$(boxId), askMe=profiles.list.length===1 && !profiles.list[0].name;
+  box.innerHTML=`<div class="add-form">
+    ${askMe?`<label for="nameMe">Your name</label><input id="nameMe" class="name-in" maxlength="20" placeholder="Like Adil" autocomplete="off">`:""}
+    <label for="nameNew">${askMe?"The new person's name":"Name"}</label><input id="nameNew" class="name-in" maxlength="20" placeholder="Like Ammi or Baba" autocomplete="off">
+    <span class="tp-label">Pick a topi</span>${topiPicker("tpNew",freeTopi())}
+    <div class="row"><button class="btn primary" id="addYes">Add and switch</button><button class="btn" id="addNo">Cancel</button></div></div>`;
+  $(askMe?"nameMe":"nameNew").focus();
+  $("addNo").onclick=()=> onCancel ? onCancel() : render();
+  bindPicker("tpNew");
+  $("addYes").onclick=()=>addPerson($("nameNew").value, askMe?$("nameMe").value:undefined, +$("tpNew").dataset.v);
+}
+function openPeople(){
+  save(); const ob=$("sheetBack"); if(ob){ ob.dataset.after=""; ob.remove(); }
+  const back=document.createElement("div"); back.className="sheet-back"; back.id="sheetBack";
+  const draw=()=>{
+    back.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="Who's learning">
+      <div class="sheet-top"><div><h3>Who's learning?</h3>${TR(...SD.learners)}</div><button class="sheet-x" id="sheetX" aria-label="Close">✕</button></div>
+      <p class="muted">${profiles.list.length>1?"Tap a name to switch. Each person keeps their own progress.":"Learning together on this phone? Add a person. Each person keeps their own progress."}</p>
+      <div class="who-list">${profiles.list.map(x=>`<button class="who${x.id===profiles.active?" now":""}" data-id="${x.id}">${avatar(x)}<span class="who-t"><b>${esc(personName(x))}</b><small>${doneLine(x.id)}</small></span><span class="go">${x.id===profiles.active?"✓ Now":"Switch →"}</span></button>`).join("")}</div>
+      <div id="peopleAdd"><button class="btn soft big" id="pAdd">+ Add a person${SUB("add")}</button></div>
+      ${profiles.list.length>1?`<button class="skip" id="pManage">Rename or remove people</button>`:""}
+    </div>`;
+    $("sheetX").onclick=closeLetter;
+    back.querySelectorAll(".who").forEach(b=>b.onclick=()=>{
+      if(b.dataset.id===profiles.active){ closeLetter(); return; }
+      switchTo(b.dataset.id); toast(`Now learning: ${personName()}`);
+    });
+    $("pAdd").onclick=()=>addForm("peopleAdd",draw);
+    const pm=$("pManage"); if(pm) pm.onclick=()=>{ back.dataset.after=""; back.remove(); show("settings"); };
+  };
+  document.body.appendChild(back);
+  back.onclick=e=>{ if(e.target===back) closeLetter(); };
+  draw();
+  $("sheetX").focus();
+}
+function whoScreen(){
+  renderBar("Project Dedar");
+  $("view").innerHTML=`<div class="welcome">
+    <div><h1>Who's learning today?</h1>${TR(...SD.learners)}</div>
+    <p class="muted">Each person has their own lessons and progress.</p>
+    <div class="who-list">${profiles.list.map(x=>`<button class="who" data-id="${x.id}">${avatar(x)}<span class="who-t"><b>${esc(personName(x))}</b><small>${doneLine(x.id)}</small></span><span class="go">→</span></button>`).join("")}</div>
+    <div id="whoAdd"><button class="skip" id="whoAddBtn">+ Add a person</button></div>
+  </div>`;
+  document.querySelectorAll(".who").forEach(b=>b.onclick=()=>switchTo(b.dataset.id));
+  $("whoAddBtn").onclick=()=>addForm("whoAdd");
+  bindFrogs($("appbar"));
+}
 function today(){ const d=new Date(); return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`; }
 function buzz(ok){ if(settings.calm) return; try{ if(navigator.vibrate) navigator.vibrate(ok?12:[25,45,25]); }catch(e){} }
 function addDay(){ days.add(today()); save(); }
@@ -724,25 +966,29 @@ function keySVG(){
 
 /* Screens */
 const NAVS=[
- {k:"home", label:"Home", icon:`<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>`},
- {k:"tour", label:"Guide", icon:`<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>`},
- {k:"alphabet", label:"Letters", icon:`<path d="M5 20 12 4l7 16"/><path d="M8.2 13.5h7.6"/>`},
- {k:"outline", label:"Lessons", icon:`<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>`},
- {k:"lesson", label:"Continue", icon:`<path d="M3 6c3-1.3 6-1.3 9 .8 3-2.1 6-2.1 9-.8v13c-3-1.3-6-1.3-9 .8-3-2.1-6-2.1-9-.8z"/><path d="M12 6.8v13.4"/>`}
+ {k:"home", label:"Home", sd:"home", icon:`<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>`},
+ {k:"tour", label:"Guide", sd:"guide", icon:`<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>`},
+ {k:"alphabet", label:"Letters", sd:"letters", icon:`<path d="M5 20 12 4l7 16"/><path d="M8.2 13.5h7.6"/>`},
+ {k:"outline", label:"Lessons", sd:"lessons", icon:`<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/>`},
+ {k:"lesson", label:"Continue", sd:"cont2", icon:`<path d="M3 6c3-1.3 6-1.3 9 .8 3-2.1 6-2.1 9-.8v13c-3-1.3-6-1.3-9 .8-3-2.1-6-2.1-9-.8z"/><path d="M12 6.8v13.4"/>`}
 ];
 function navKey(){ return screen.startsWith("tour")?"tour":screen; }
+function setNavH(){ const n=document.querySelector(".nav"); if(n) document.documentElement.style.setProperty("--nav-h", n.offsetHeight+"px"); }
+window.addEventListener("resize",setNavH);
 function renderNav(){
-  $("nav").innerHTML=NAVS.map(n=>`<button data-k="${n.k}" class="${navKey()===n.k?"on":""}" aria-current="${navKey()===n.k?"page":"false"}"><span class="pill"><svg viewBox="0 0 24 24">${n.icon}</svg></span>${n.label}</button>`).join("");
+  $("nav").innerHTML=NAVS.map(n=>`<button data-k="${n.k}" class="${navKey()===n.k?"on":""}" aria-current="${navKey()===n.k?"page":"false"}"><span class="pill"><svg viewBox="0 0 24 24">${n.icon}</svg></span>${n.label}<span class="nsub">${S(SD[n.sd][0])}${D(SD[n.sd][1])}</span></button>`).join("");
   $("nav").querySelectorAll("button").forEach(b=>b.onclick=()=>{
     const k=b.dataset.k; stack=[];
     if(k==="tour") show("tour-"+TOUR[seen.size>=TOUR.length?0:seen.size].k,false);
     else show(k,false);
   });
+  requestAnimationFrame(setNavH);
 }
 function renderBar(title, right){
   $("appbar").innerHTML = `${screen==="home"?`<button class="frog-btn" aria-label="Dedar means frog. Tap me.">${FROG}</button>`:`<button class="back" id="backBtn" aria-label="Go back">←</button>`}
-    <span class="appbar-title">${title}</span>${right?`<span class="appbar-step">${right}</span>`:""}${screen==="home"&&!firstRun()?`<button class="gear" id="gearBtn" aria-label="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></svg></button>`:""}`;
+    <span class="appbar-title">${title}</span>${right?`<span class="appbar-step">${right}</span>`:""}${screen==="home"&&!needPick()?`<button class="me-chip" id="meBtn" aria-label="Learning as ${esc(personName())}. Tap to switch person.">${avatar(me())}<span class="me-name">${esc(personName())}</span><span class="chev" aria-hidden="true">▾</span></button>`:""}${screen==="home"&&!needPick()?`<button class="gear" id="gearBtn" aria-label="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>`:""}`;
   const gb=$("gearBtn"); if(gb) gb.onclick=()=>show("settings");
+  const mb=$("meBtn"); if(mb) mb.onclick=openPeople;
   const b=$("backBtn"); if(b) b.onclick=goBack;
   bindFrogs($("appbar"));
 }
@@ -750,7 +996,7 @@ function pathHTML(){
   return `<div class="path" role="group" aria-label="${done.size} of ${LESSONS.length} lessons done. You are on lesson ${cur+1}.">${["a","b","c"].map(s=>
     `<div class="path-seg"><div class="path-dots">${LESSONS.map((l,i)=>l.stage!==s?"":`<button class="pdot ${s}${done.has(i)?" done":""}${i===cur?" cur":""}" data-i="${i}" title="Lesson ${i+1}: ${l.title}" aria-label="Open lesson ${i+1}: ${l.title}${done.has(i)?", done":""}"></button>`).join("")}</div>
      <button class="path-lbl ${STAGES[s].cls}" data-s="${s}" aria-label="See all ${STAGES[s].name.toLowerCase()} lessons">${STAGES[s].name}</button></div>`).join("")}</div>
-    <div class="prog-meta"><span>${done.size} of ${LESSONS.length} lessons done</span><span>${fmt(LESSONS.filter((l,i)=>!done.has(i)).reduce((x,l)=>x+l.min,0))} left</span></div>`;
+    <div class="prog-meta"><span>${done.size} of ${LESSONS.length} lessons done</span><span>${done.size===LESSONS.length?"All done ✓":fmt(LESSONS.filter((l,i)=>!done.has(i)).reduce((x,l)=>x+l.min,0))+" left"}</span></div>`;
 }
 function bindPath(root){
   const leave=()=>{ const b=$("sheetBack"); if(b){ b.dataset.after=""; closeLetter(); } };
@@ -760,7 +1006,7 @@ function bindPath(root){
 function progressHTML(){
   const n=done.size;
   return `<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${LESSONS.length}" aria-valuenow="${n}"><span style="width:${n/LESSONS.length*100}%"></span></div>
-    <div class="prog-meta"><span>${n} of ${LESSONS.length} lessons done</span><span>${fmt(LESSONS.filter((l,i)=>!done.has(i)).reduce((x,l)=>x+l.min,0))} left</span></div>`;
+    <div class="prog-meta"><span>${n} of ${LESSONS.length} lessons done</span><span>${done.size===LESSONS.length?"All done ✓":fmt(LESSONS.filter((l,i)=>!done.has(i)).reduce((x,l)=>x+l.min,0))+" left"}</span></div>`;
 }
 
 function greeting(){ const h=new Date().getHours(); return h>=5&&h<12?"Good morning":h>=12&&h<17?"Good afternoon":h>=17&&h<23?"Good evening":"Hello"; }
@@ -781,7 +1027,7 @@ function welcomeScreen(){
     <div><h1>Read Sindhi in Devanagari</h1><span class="h1-tr">${TR("سِنڌي ديوناگري ۾ پَڙهو","सिन्धी देवनागरी में पढ़ो")}</span></div>
     <p class="lede">You already know Sindhi in Arabic script. Here you learn the <b>Devanagari</b> shape of each letter, one small lesson a day.</p>
     <div class="kid-wrap">${KID}</div>
-    <button class="btn primary big" id="wStart">Let's start →</button>
+    <button class="btn primary big" id="wStart">Let's start →${SUB("start")}</button>
     <button class="skip" id="wSkip">Skip the intro, go to lesson 1</button>
   </div>`;
   $("wStart").onclick=()=>{ welcomed=true; save(); show("tour-plan"); };
@@ -797,16 +1043,17 @@ function homeScreen(){
     ? `<div class="paused" role="status"><b>Break time. Your place is saved.</b><span>Come back whenever you're ready. Lesson ${cur+1} is waiting.</span></div>`
     : pausedMsg ? `<div class="paused" role="status"><b>Paused. Your place is saved.</b><span>You're on lesson ${cur+1}. Come back anytime on this browser.</span></div>` : "";
   const lessonCard = `<div class="card">
-      <span class="eyebrow">${done.size===0?"Your first lesson":allDone?"All done":"Pick up where you left off"}</span>
-      <div class="next-up"><b>Lesson ${cur+1}: ${l.title}</b>${TR(l.sd,l.dv)}<span class="muted">${l.min} minutes${step>0&&!allDone?` · you're on step ${step+1} of 4`:""}</span></div>
+      <span class="eyebrow">${done.size===0?`Your first lesson ${TR(...SD.first)}`:allDone?`All done ${TR(...SD.done)}`:`Pick up where you left off ${TR(...SD.left)}`}</span>
+      <div class="next-up"><b>Lesson ${cur+1}: ${l.title}</b>${LT(cur)}
+        <div class="meta"><span class="mchip"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${l.min} min</span>${step>0&&!allDone?`<span class="mchip on">Step ${step+1} of 4</span>`:""}</div></div>
       ${pathHTML()}
       ${n?`<p class="days">You've practiced on <b>${n} day${n>1?"s":""}</b>.</p>`:""}
-      <button class="btn primary big" id="goLesson">${allDone?"See all lessons →":done.size===0&&step===0?"Start lesson 1 →":`Continue lesson ${cur+1} →`}</button>
+      <button class="btn primary big" id="goLesson">${allDone?`See all lessons →${SUB("lessons")}`:done.size===0&&step===0?`Start lesson 1 →${SUB("start")}`:`Continue lesson ${cur+1} →${SUB("cont")}`}</button>
     </div>`;
   const reviewCard = done.size?`<div class="card">
       <div><h3>Quick review</h3>${TR("ٻيهَر ڏِسو","ॿीहर ॾिसो")}</div>
       ${weakLetters().length?`<p class="muted">${weakLetters().length===1?"1 letter needs":weakLetters().length+" letters need"} a little more practice:</p>${letterChips(weakLetters().slice(0,5))}`:`<p class="muted">Letters from the lessons you finished. About 2 minutes.</p>`}
-      <button class="btn soft big" id="goReview">Start review →</button>
+      <button class="btn soft big" id="goReview">Start review →${SUB("start")}</button>
     </div>`:"";
   const tourCard = tourDone?"":`<div class="card">
       <div><h3>Haven't seen the guide yet?</h3>${TR("رَهنُمائي","रहनुमाई")}</div>
@@ -817,7 +1064,8 @@ function homeScreen(){
   $("view").innerHTML = `
     ${paused}
     <div class="home-top">
-      <p class="greet">${greeting()}${done.size?", welcome back":""} <span class="greet-tr">${TR("ڀَلي ڪَري آيا","भली करे आया")}</span></p>
+      <p class="greet">${greeting()}${me().name?", "+esc(me().name):""}${done.size?", welcome back":""} <span class="greet-tr">${TR("ڀَلي ڪَري آيا","भली करे आया")}</span></p>
+
       <div><h1>Read Sindhi in Devanagari</h1><span class="h1-tr">${TR("سِنڌي ديوناگري ۾ پَڙهو","सिन्धी देवनागरी में पढ़ो")}</span></div>
       <p class="purpose">One small lesson a day. Every letter sits next to the Arabic-script letter you already know.</p>
     </div>
@@ -825,6 +1073,7 @@ function homeScreen(){
     <button class="home-link" id="toReader2">Got Sindhi text in Devanagari? <b>Try the reading helper →</b></button>
     <p class="foot-name"><button class="frog-btn small" aria-label="Dedar means frog. Tap me.">${FROG}</button>Dedar · version ${APP_VERSION}</p>`;
   $("goLesson").onclick=()=> allDone ? show("outline") : openLesson(cur);
+
   const gr=$("goReview"); if(gr) gr.onclick=startReview;
   $("toReader2").onclick=()=>show("reader");
   $("lotd").onclick=()=>openLetter(dayLetter());
@@ -838,13 +1087,13 @@ function tourHeader(i){
   return `<nav class="tour-steps" aria-label="Guide pages">${TOUR.map((t,j)=>`<button class="ts${j===i?" on":""}${j<i?" past":""}" data-k="${t.k}"${j===i?' aria-current="page"':""}><span class="ts-n">${j<i?"✓":j+1}</span><span class="ts-t">${TOUR_SHORT[j]}</span></button>`).join("")}</nav>`;
 }
 function tourNav(i){
-  const label = i<TOUR.length-1 ? `Next: ${TOUR_SHORT[i+1]} →` : `Start lesson ${cur+1} →`;
+  const label = i<TOUR.length-1 ? `Next: ${TOUR_SHORT[i+1]} →${SUB("next")}` : `Start lesson ${cur+1} →${SUB("start")}`;
   return `<div class="tour-next"><span class="tn-page">Page <b>${i+1}</b> of 3</span><button class="btn primary" id="tourNext">${label}</button></div>`;
 }
 function bindTourNav(i){ document.querySelectorAll(".tour-steps .ts").forEach(b=>b.onclick=()=>show("tour-"+b.dataset.k,false)); $("tourNext").onclick=()=> i<TOUR.length-1 ? show("tour-"+TOUR[i+1].k) : openLesson(cur); }
 
 function tourPlan(){
-  renderBar("How the course works","Guide 1 of 3");
+  renderBar("How it works","Guide 1 of 3");
   const st = s=>{ const [a,b,n]=stageRange(s), g=STAGES[s];
     const what = {
       a:`${STAGES.a.def} We group them by <b>where in your mouth</b> you make them.`,
@@ -860,8 +1109,9 @@ function tourPlan(){
     <div><h2>The course has 3 parts</h2>${TR("ٽي حِصا","टे हिसा")}</div>
     <p>Go in order: <b>A</b>, then <b>B</b>, then <b>C</b>. Each part builds on the last.</p>
     <div class="stages">${st("a")}${st("b")}${st("c")}</div>
-    <div class="card">
-      <h3>Why is A so much bigger?</h3>
+    <details class="card fold">
+      <summary><div><h3>Course plan</h3>${TR("سَبَقَنِ جي تَرتيب","सबक़नि जी तरतीब")}</div></summary>
+      <p class="muted">Why part A has the most lessons:</p>
       <div class="split" aria-hidden="true">
         <div class="a" style="flex:7">A · 7 lessons</div><div class="b" style="flex:3">B · 3</div><div class="c" style="flex:3">C · 3</div>
       </div>
@@ -870,19 +1120,18 @@ function tourPlan(){
         <li><b class="k b-c">B</b><span>There are only about <b>10 vowel sounds</b>. They fit in <b>3 lessons</b>: vowels alone, then marks in two halves.</span></li>
         <li><b class="k c-c">C</b><span>Reading has <b>3 steps</b>: word endings, then sentences, then joined letters.</span></li>
       </ul>
+    </details>
+    <div class="card">
+      <div><h3>Lesson steps</h3>${TR("سَبَق جا قَدَم","सबक़ जा क़दम")}</div>
+      <p class="muted">Every lesson goes through these 4 steps.</p>
+      <div class="recipe"><div><b>The letters</b>${TR("اَکَر","अखर")}3 to 8 at a time</div><div><b>2 tricks</b>${TR("ٽوٽَڪا","टोटका")}to remember them</div><div><b>Practice</b>${TR("مَشق","मश्क़")}a match game, then real words</div><div><b>Finish ✓</b>${TR("پورو","पूरो")}tap to mark it done</div></div>
     </div>
     <div class="card">
-      <h3>Every lesson has the same 4 parts</h3>
-      <div class="recipe"><div><b>A table</b>${TR("جَدوَل","जदवल")}3 to 8 letters</div><div><b>2 tricks</b>${TR("ٽوٽَڪا","टोटका")}to remember them</div><div><b>Practice</b>${TR("مَشق","मश्क़")}a match game, then real words</div><div><b>Done ✓</b>${TR("پورو","पूरो")}tap to mark it</div></div>
-    </div>
-    <div class="card">
-      <h3>Your 4 buttons</h3>
-      <p class="muted">You'll find these at the bottom of every lesson. Try one now.</p>
-      <div class="cmds">
-        <button class="cmd" data-cmd="repeat"><b>↺ Repeat</b>${TR("ٻيهَر","ॿीहर")}<span>Start the lesson again</span></button>
-        <button class="cmd" data-cmd="quiz"><b>? Quiz</b>${TR("اِمتِحان","इम्तिहान")}<span>Test yourself</span></button>
-        <button class="cmd" data-cmd="pause"><b>❚❚ Pause</b>${TR("ساهي","साही")}<span>Save your place</span></button>
-        <button class="cmd" data-cmd="next"><b>→ Skip</b>${TR("اَڳتي","अॻिते")}<span>Go to the next lesson</span></button>
+      <div><h3>Helper buttons</h3>${TR("مَدَد جا بَٽَڻَ","मदद जा बटण")}</div>
+      <p class="muted">This bar sits at the bottom of every lesson.</p>
+      <div class="bar-demo" role="img" aria-label="The lesson button bar: Repeat starts again, Quiz tests you, Pause saves your place, Skip goes to the next lesson.">
+        <div class="toolbar">${[["↺","Repeat","ٻيهَر","ॿीहर","Start again"],["?","Quiz","اِمتِحان","इम्तिहान","Test yourself"],["❚❚","Pause","ساهي","साही","Save your place"],["→","Skip","اَڳتي","अॻिते","Next lesson"]].map(([i,n,a,d])=>`<span class="tool"><span class="i">${i}</span>${n}<span class="tsub">${S(a)}<br>${D(d)}</span></span>`).join("")}</div>
+        <div class="bar-caps">${[["ٻيهَر","ॿीहर","Start again"],["اِمتِحان","इम्तिहान","Test yourself"],["ساهي","साही","Save your place"],["اَڳتي","अॻिते","Next lesson"]].map(([a,d,t])=>`<span><b>${t}</b>${TR(a,d)}</span>`).join("")}</div>
       </div>
     </div>
     ${tourNav(0)}`;
@@ -891,7 +1140,7 @@ function tourPlan(){
 }
 
 function tourMouth(){
-  renderBar("Where sounds come from","Guide 2 of 3");
+  renderBar("Where sounds start","Guide 2 of 3");
   $("view").innerHTML = `
     ${tourHeader(1)}
     <h2>Where each sound is made</h2>${TR("وات ۾ آواز","वात में आवाज़")}
@@ -917,7 +1166,7 @@ function tourMouth(){
 }
 
 function tourExtra(){
-  renderBar("Sindhi's special letters","Guide 3 of 3");
+  renderBar("Special letters","Guide 3 of 3");
   $("view").innerHTML = `
     ${tourHeader(2)}
     <h2>Sindhi has 4 extra letters</h2>${TR("4 وَڌيڪ اَکَر","4 वधीक अखर")}
@@ -956,9 +1205,12 @@ const EX=[
  ["ڪَڻَڪ","कणक","wheat"],["وَڻُ","वणु","tree"],["هَٿُ","हथु","hand"],["جاءِ","जाइ","place"],["يارُ","यारु","friend"]];
 
 /* Dedar (ڏيڏر) means frog. A little frog appears wherever the name does. */
-const FROG=`<svg class="frog" viewBox="0 0 64 54" aria-hidden="true">
+const FROG=`<svg class="frog" viewBox="0 -8 64 62" aria-hidden="true">
   <ellipse cx="18" cy="49" rx="8" ry="3.5" fill="var(--good)"/><ellipse cx="46" cy="49" rx="8" ry="3.5" fill="var(--good)"/>
   <ellipse cx="32" cy="34" rx="24" ry="16" fill="var(--good)"/>
+  <ellipse cx="32" cy="21" rx="14" ry="9" fill="var(--good)"/>
+  <ellipse cx="32" cy="13.5" rx="9" ry="7" fill="var(--good)"/>
+  <g transform="translate(14.5 -5.5) scale(.35)">${topiG(0,false)}</g>
   <circle cx="19" cy="17" r="9.5" fill="var(--good)"/><circle cx="45" cy="17" r="9.5" fill="var(--good)"/>
   <circle cx="19" cy="17" r="5.8" fill="#ffffff"/><circle cx="45" cy="17" r="5.8" fill="#ffffff"/>
   <circle cx="20.5" cy="18" r="2.8" fill="#1d3b2a"/><circle cx="46.5" cy="18" r="2.8" fill="#1d3b2a"/>
@@ -1000,27 +1252,12 @@ const KID=`<svg class="kid-art" viewBox="0 0 320 200" role="img" aria-label="A c
   <circle cx="102" cy="80" r="2.2" fill="#2b1b12"/>
   <circle cx="104" cy="88" r="3" fill="#e0866f" opacity=".5"/>
   <path d="M91 89 Q96 93 101 88" fill="none" stroke="#2b1b12" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M69 68 L69 52 Q89 45 109 52 L109 68 Q89 72 69 68 Z" fill="var(--madder)"/>
-  <ellipse cx="89" cy="52" rx="20" ry="5.5" fill="var(--madder)" stroke="var(--ochre)" stroke-width="1.8"/>
-  <polyline points="69,58 73,62 77,58 81,62 85,58" fill="none" stroke="var(--ochre)" stroke-width="1.6" stroke-linejoin="round"/>
-  <path d="M95 69 L95 63 A6 6 0 0 1 107 63 L107 69" fill="#c98a5a" stroke="var(--ochre)" stroke-width="1.6"/>
-  <g fill="#e8eaf6" stroke="var(--ochre)" stroke-width="1"><circle cx="76" cy="65" r="1.8"/><circle cx="89" cy="51" r="1.8"/><circle cx="80" cy="50" r="1.4"/><circle cx="98" cy="50" r="1.4"/></g>
+  <g transform="translate(67 45) scale(.44)">${topiG(0,false)}</g>
 </svg>`;
 /* A Sindhi topi, drawn for the word ٽوپي (cap). */
-const TOPI=`<svg class="topi" viewBox="0 0 120 92" role="img" aria-label="A Sindhi topi">
-  <path d="M14 26 L14 70 Q60 84 106 70 L106 26 Z" fill="var(--madder)"/>
-  <ellipse cx="60" cy="26" rx="46" ry="11" fill="var(--madder)" stroke="var(--ochre)" stroke-width="2.5"/>
-  <polyline points="14,38 20,44 26,38 32,44 38,38" fill="none" stroke="var(--ochre)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-  <polyline points="82,38 88,44 94,38 100,44 106,38" fill="none" stroke="var(--ochre)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-  <path d="M44 76 L44 60 A16 16 0 0 1 76 60 L76 76 Q60 78 44 76 Z" fill="var(--surface)"/>
-  <path d="M39 75 L39 60 A21 21 0 0 1 81 60 L81 75" fill="none" stroke="var(--ochre)" stroke-width="2.5" stroke-linecap="round"/>
-  <g fill="#e8eaf6" stroke="var(--ochre)" stroke-width="1.5">
-    <circle cx="24" cy="56" r="4"/><circle cx="27" cy="67" r="2.8"/><circle cx="96" cy="56" r="4"/><circle cx="93" cy="67" r="2.8"/>
-    <circle cx="40" cy="25" r="2.6"/><circle cx="60" cy="22" r="3"/><circle cx="80" cy="25" r="2.6"/>
-  </g>
-</svg>`;
+const TOPI=topiSVG(0,"topi","A Sindhi topi");
 /* One picture per example word, same order as EX. Empty where the meaning can't be drawn. */
-const PIC=["📅","🔥","🧒","👬","⭐","❄️",TOPI,"👍","","💧","🐾","👅","🚩","","🍵","👦",
+const PIC=["","🔥","🧒","👬","⭐","❄️",TOPI,"👍","","💧","🐾","👅","🚩","","🍵","👦",
  "","📰","❤️","🌍","🦷","😨","🐂","😋","🌙","","🏞️","☀️","🏙️","✨","",
  "🦜","","🎉","","","🍎","🖊️","📖","🥛","🚗","🏡","🏠","","",
  "🫓","👃","🌾","🌳","✋","📍","🤝"];
@@ -1039,13 +1276,13 @@ function openLetter(i){
       <div class="write-tips"><span><b>Arabic:</b> right to left, dots last</span><span><b>Devanagari:</b> letter first, top line last</span></div>
       <button class="reveal" id="rewrite">↺ Write it again</button>
     </div>
-    <div class="sheet-say"><b>Say it: ${rom}</b><span>${how}</span>${same?`<span>Devanagari uses ${D(d)} for ${S(same)} and ${S(a)} alike.</span>`:""}</div>
-    <div class="sheet-ex"><span class="eyebrow">Example word</span>
+    <div class="sheet-say"><b>Say it: ${rom}</b><span>${ARW(how)}</span>${same?`<span>Devanagari uses ${D(d)} for ${S(same)} and ${S(a)} alike.</span>`:""}</div>
+    <div class="sheet-ex"><span class="eyebrow">Example word ${TR(...SD.example)}</span>
       ${PIC[i]?`<div class="ex-pic" aria-hidden="true">${PIC[i]}</div>`:""}
       <div class="sheet-pair small"><span class="sheet-a">${S(ea)}</span><span class="sheet-arrow">→</span><span class="sheet-d">${ed}</span></div>
       <span class="muted">means "${em}"</span></div>
-    ${l?`<button class="btn primary big" id="sheetLesson">Open lesson ${l} →</button>`:`<p class="muted">Devanagari has <b>no letter</b> for this. It just writes the vowel, like ${S("جاءِ")} → ${D("जाइ")}.</p>`}
-    <div class="sheet-nav"><button class="btn" id="sheetPrev" ${i===0?"disabled":""}>← Previous</button><button class="btn" id="sheetNext" ${i===ABC.length-1?"disabled":""}>Next →</button></div>
+    ${l?`<button class="btn primary big" id="sheetLesson">Open lesson ${l} →${SUB("open")}</button>`:`<p class="muted">Devanagari has <b>no letter</b> for this. It just writes the vowel, like ${S("جاءِ")} → ${D("जाइ")}.</p>`}
+    <div class="sheet-nav"><button class="btn" id="sheetPrev" ${i===0?"disabled":""}>← Previous${SUB("back")}</button><button class="btn" id="sheetNext" ${i===ABC.length-1?"disabled":""}>Next →${SUB("next")}</button></div>
   </div>`;
   document.body.appendChild(back);
   back.onclick=e=>{ if(e.target===back) closeLetter(); };
@@ -1067,14 +1304,14 @@ function celebrate(was){
   const back=document.createElement("div"); back.className="sheet-back mid"; back.id="sheetBack"; back.dataset.after="lesson";
   back.innerHTML=`<div class="sheet celebrate" role="dialog" aria-modal="true" aria-label="Lesson ${was+1} done">
     ${all?`<button class="frog-btn cel-frog" aria-label="Dedar means frog. Tap me.">${FROG}</button>`:`<div class="cel-check" aria-hidden="true">✓</div>`}
-    <div><h2>${all?"Course complete!":`Lesson ${was+1} done!`}</h2>${TR("شاباس","शाबास")}</div>
+    <div><h2>${all?"Course complete!":`Lesson ${was+1} done!`}</h2>${all?TR("شاباس! سَڄو ڪورس پورو","शाबास! सॼो कोर्स पूरो"):TR(`شاباس! سَبَق ${was+1} پورو`,`शाबास! सबक़ ${was+1} पूरो`)}</div>
     <p class="muted">${all?"You can now read Sindhi in Devanagari. Amazing work.":"You just learned these:"}</p>
     ${all?"":`<div class="chips cel-chips">${l.letters.map(x=>`<span class="lc">${LONE(x[0])} ${S("("+x[1]+")")}</span>`).join("")}</div>`}
     ${sessionDone>=2&&!all?`<p class="break-note">That's <b>${sessionDone} lessons in a row</b>. Great focus! A short break now helps the letters stick.</p>`:""}
     ${pathHTML()}
-    ${next!==null?`<button class="btn primary big" id="celNext">Next: lesson ${next+1} →</button>`:""}
-    ${sessionDone>=2&&!all?`<button class="btn big" id="celBreak">Take a break</button>`:""}
-    <button class="btn big" id="celHome">Back to home</button>
+    ${next!==null?`<button class="btn primary big" id="celNext">Next: lesson ${next+1} →${SUB("next")}</button>`:""}
+    ${sessionDone>=2&&!all?`<button class="btn big" id="celBreak">Take a break${SUB("pause")}</button>`:""}
+    <button class="btn big" id="celHome">Back to home${SUB("home")}</button>
   </div>`;
   document.body.appendChild(back);
   bindPath(back); bindFrogs(back);
@@ -1112,11 +1349,11 @@ function alphabetScreen(){
       </ol>
     </details>
     <div class="tbl-wrap"><table class="abc-t">
-      <thead><tr><th>#</th><th>Arabic</th><th>Devanagari</th><th>Say it</th><th>Lesson</th></tr></thead>
+      <thead><tr><th>Arabic</th><th>Devanagari</th><th>Say it</th></tr></thead>
       <tbody>${ABC.map(([a,d,l,same,rom,how],i)=>{ const sp=/[ٻڄڏڳ]/.test(a);
         return `<tr class="go${sp?" special":""}${same?" same":""}" data-i="${i}" tabindex="0" role="button" aria-label="${a}, ${d}, ${rom}. Show example">
-          <td class="n">${i+1}</td><td class="a">${S(a)}</td><td class="d">${d}</td>
-          <td class="say-it"><b>${rom}</b><small>${how}</small></td><td class="l">${l?l:"–"}</td></tr>`; }).join("")}</tbody>
+          <td class="a">${S(a)}</td><td class="d">${d}</td>
+          <td class="say-it"><b>${rom}</b><small>${ARW(how)}</small>${l?`<span class="abc-les">Lesson ${l} ›</span>`:""}</td></tr>`; }).join("")}</tbody>
     </table></div>
     <button class="card tool-card" id="toReader"><b>Reading helper ${TR("پَڙهڻ ۾ مَدَد","पढ़ण में मदद")}</b><span class="muted">Paste Sindhi in Devanagari, see it in Arabic script.</span><span class="cue">Open →</span></button>
     <h3>Vowel marks and signs ${TR("اِعراب","मात्रा")}</h3>
@@ -1137,7 +1374,7 @@ function outlineScreen(){
     LESSONS.forEach((l,i)=>{ if(l.stage!==s) return; const d=done.has(i);
       h+=`<button class="ol-row ${s}${d?" done":""}${i===cur?" cur":""}" data-i="${i}" aria-label="Open lesson ${i+1}: ${l.title}, ${l.min} minutes${d?", done":""}">
         <span class="ol-num">${d?"✓":i+1}</span>
-        <span class="ol-txt"><b>${l.title} ${TR(l.sd,l.dv)}</b>
+        <span class="ol-txt"><b>${l.title}</b>${LT(i)}
           <span class="chips">${l.letters.map(x=>`<span class="lc">${x[0]} ${S("("+x[1]+")")}</span>`).join("")}</span></span>
         <span class="ol-min">${l.min} min</span></button>`;
     });
@@ -1226,7 +1463,7 @@ function studioHome(){
     </div>
     ${LESSONS.map((l,i)=>{ const it=all[i], c=it.filter(x=>recKeys.has(x.id)).length, full=c===it.length;
       return `<button class="ol-row ${l.stage}${full?" done":""}" data-i="${i}"><span class="ol-num">${full?"✓":i+1}</span>
-        <span class="ol-txt"><b>${l.title} ${TR(l.sd,l.dv)}</b><span class="muted" style="font-size:.9rem">${c} of ${it.length} recorded</span></span><span class="ol-min">${it.length} clips</span></button>`; }).join("")}`;
+        <span class="ol-txt"><b>${l.title}</b>${LT(i)}<span class="muted" style="font-size:.9rem">${c} of ${it.length} recorded</span></span><span class="ol-min">${it.length} clips</span></button>`; }).join("")}`;
   document.querySelectorAll(".ol-row").forEach(b=>b.onclick=()=>{ studioLesson=+b.dataset.i; studioLessonView(); window.scrollTo(0,0); });
   $("dlBtn").onclick=downloadZip;
 }
@@ -1325,7 +1562,7 @@ function renderMatch(){
     $("mAgain").onclick=()=>{ newMatch(); renderMatch(); }; return;
   }
   const r=match.order[match.i], a=l.letters[r][1];
-  box.innerHTML=`<div class="m-top"><span>Which one is this?</span><span>${match.i+1} of ${match.order.length}</span></div>
+  box.innerHTML=`<div class="m-top"><span>Which one is this? ${TR(...SD.which)}</span><span>${match.i+1} of ${match.order.length}</span></div>
     <div class="m-prompt" dir="rtl" lang="sd">${a}</div>
     <div class="m-opts">${shuffle(l.letters.map((_,j)=>j)).map(j=>`<button class="m-opt" data-j="${j}">${l.letters[j][0]}</button>`).join("")}</div>`;
   box.querySelectorAll(".m-opt").forEach(b=>b.onclick=()=>{
@@ -1356,16 +1593,16 @@ function quizHTML(){
   if(quiz.i>=n){
     const msg=quiz.score===n?"Perfect! Mark this lesson done.":quiz.score>=n-1?"Very good. One more look and you've got it.":"Good try. Read the table once more, then quiz again.";
     return `<div class="quiz" id="quizBox"><div class="q-end"><span class="score">${quiz.score} / ${n}</span><p>${msg}</p>
-      <div class="row"><button class="btn quizb" id="qAgain">Quiz again</button><button class="btn" id="qClose">Close quiz</button></div></div></div>`;
+      <div class="row"><button class="btn quizb" id="qAgain">Quiz again${SUB("again")}</button><button class="btn" id="qClose">Close quiz${SUB("close")}</button></div></div></div>`;
   }
   const q=quiz.qs[quiz.i];
   return `<div class="quiz" id="quizBox">
-    <div class="quiz-top"><b>Quiz · Lesson ${cur+1}</b> ${TR("اِمتِحان","इम्तिहान")}<span>Question ${quiz.i+1} of ${n} · Score ${quiz.score}</span></div>
+    <div class="quiz-top"><div><b>Quiz · Lesson ${cur+1}</b>${TR("اِمتِحان","इम्तिहान")}</div><span class="mchip">Question ${quiz.i+1} of ${n} · ✓ ${quiz.score}</span></div>
     <div class="q-prompt">${q.d}<div>${sayBtn(q.d,q.id)}</div></div>
-    <p class="q-ask">Which one is the same in Arabic script?</p>
+    <p class="q-ask">Which one is the same in Arabic script?<br>${TR(...SD.same)}</p>
     <div class="q-opts">${q.opts.map(o=>`<button class="q-opt" dir="rtl" lang="sd" data-a="${o}">${o}</button>`).join("")}</div>
     <p class="q-msg" id="qMsg"></p>
-    <div class="row" style="justify-content:space-between"><button class="btn" id="qClose">Close quiz</button><button class="btn primary" id="qNext" hidden>${quiz.i===n-1?"See my score":"Next question →"}</button></div>
+    <div class="row" style="justify-content:space-between"><button class="btn" id="qClose">Close quiz${SUB("close")}</button><button class="btn primary" id="qNext" hidden>${quiz.i===n-1?`See my score${SUB("score")}`:`Next question →${SUB("next")}`}</button></div>
   </div>`;
 }
 function bindQuiz(){
@@ -1397,43 +1634,43 @@ function renderLessonScreen(){
     const rows=l.letters.map(([d,a,s,sp],r)=>`<tr class="${sp?"special":""}"><td class="d">${LONE(d)}</td><td class="a">${S("("+a+")")}</td><td class="s">${LONE(s)}${sp?'<span class="badge">Sindhi only</span>':""}</td>${hasA?`<td class="h">${sayBtn(d,`l${cur}-${r}`)}</td>`:""}</tr>`).join("");
     const mo=MOUTH.find(m=>m.lesson===cur);
     body=`<div class="block">${H(0)}
-      ${mo?`<div class="lesson-mouth">${mouthSVG(mo)}<div class="lm-txt"><b>Where to make the sound</b><span>${l.hint}</span><small class="muted">The <b style="color:var(--ochre)">yellow dot</b> shows where the touch happens.</small><button class="lm-link" id="toMouth">See all 5 groups →</button></div></div>`:`<p class="hint">${l.hint}</p>`}
-      <details class="def"><summary>${g.q} ${TR(g.sd,g.dv)}</summary><p>${g.def}${MISAAL(g.ex)}</p></details>
+      ${mo?`<div class="lesson-mouth">${mouthSVG(mo)}<div class="lm-txt"><b>Where to make the sound</b><span>${l.hint}</span><button class="lm-link" id="toMouth">See all 5 groups →</button></div></div>`:`<p class="hint">${l.hint}</p>`}
       ${hasA?`<p class="muted" style="font-size:.95rem">Tap the speaker to hear each letter.</p>`:""}
       <div class="tbl-wrap"><table><thead><tr><th>Devanagari</th><th>Arabic</th><th>Sound</th>${hasA?"<th>Hear</th>":""}</tr></thead><tbody>${rows}</tbody></table></div>
-      <p class="muted step-tip">Take your time. Say each letter out loud once.</p></div>`;
+      <p class="muted step-tip">Take your time. Say each letter out loud once.</p>
+      <details class="def"><summary>${g.q} ${TR(g.sd,g.dv)}</summary><p>${g.def}${MISAAL(g.ex)}</p></details></div>`;
   }
   else if(step===1) body=`<div class="block">${H(1)}<ul class="tricks">${l.tricks.map(t=>`<li><span>${t}</span></li>`).join("")}</ul></div>`;
   else if(step===2){
-    const words=l.words.map(([d,a,m],k)=>`<div class="word"><span class="w-d">${markWord(d,cur)}</span><span class="w-a" id="wa-${k}" hidden>(${S(a)})</span><span class="w-m" id="wm-${k}" hidden>${PICW[d]?`<span class="w-pic" aria-hidden="true">${PICW[d]}</span> `:""}${m}</span><div class="w-actions">${sayBtn(d,`w${cur}-${k}`)}<button class="reveal" data-k="${k}">Show answer</button></div></div>`).join("");
+    const words=l.words.map(([d,a,m],k)=>`<div class="word"><span class="w-d">${markWord(d,cur)}</span><span class="w-a" id="wa-${k}" hidden>(${S(a)})</span><span class="w-m" id="wm-${k}" hidden>${PICW[d]?`<span class="w-pic" aria-hidden="true">${PICW[d]}</span> `:""}${m}</span><div class="w-actions">${sayBtn(d,`w${cur}-${k}`)}<button class="reveal" data-k="${k}">Show answer${SUB("answer")}</button></div></div>`).join("");
     body = l.words.length
       ? `<div class="block">${H(2)}<p class="muted" style="font-size:.95rem">${l.words.some(w=>hasUnknown(w[0],cur))?`Find this lesson's letter in <b class="g-hit">red</b>. <span class="g-dim">Grey parts</span> come in later lessons. Then tap to check.`:"You know every part now. Try to read it first. Then tap to check."}</p><div class="words">${words}</div></div>`
       : `<div class="block">${H(2)}<p class="muted" style="font-size:.95rem">You can't read whole words yet, so match the letters first. Real words start in lesson 6.</p><div class="match" id="matchBox"></div></div>`;
   }
   else body=`<div class="block done-step">${H(3)}
       ${isDone?`<p><b>You already finished this lesson.</b></p>`:`<p><b>That's the whole lesson!</b></p><p class="muted">Want to test yourself first? It's optional.</p>`}
-      <button class="btn quizb big" id="stepQuiz">? Quiz me</button>
-      <button class="btn ${isDone?"soft":"primary"} big" id="markBtn">${isDone?"✓ Done · tap to undo":"Mark lesson done ✓"}</button>
+      <button class="btn quizb big" id="stepQuiz">? Quiz me${SUB("quiz")}</button>
+      <button class="btn ${isDone?"soft":"primary"} big" id="markBtn">${isDone?"✓ Done · tap to undo":`Mark lesson done ✓${SUB("done")}`}</button>
     </div>`;
   const stepper = quiz?"":`<div class="lesson-steps">
       <div class="stepper">${STEPS.map((x,i)=>`<button class="st-seg${i===step?" on":""}${i<step?" past":""}" data-st="${i}" aria-label="Step ${i+1}: ${x[0]}"${i===step?' aria-current="step"':""}></button>`).join("")}</div>
-      <span class="st-label">Step ${step+1} of 4 · <b>${STEPS[step][0]}</b></span></div>`;
-  const nav = quiz||step===3?"":`<div class="step-nav">${step>0?`<button class="btn" id="stepBack">← Back</button>`:""}<button class="btn primary" id="stepNext">${STEPS[step][3]}</button></div>`;
+      <span class="st-label">Step ${step+1} of 4 ${TR(`${SD.step[0]} ${step+1}/4`,`${SD.step[1]} ${step+1}/4`)}</span></div>`;
+  const nav = quiz||step===3?"":`<div class="step-nav">${step>0?`<button class="btn" id="stepBack">← Back${SUB("back")}</button>`:""}<button class="btn primary" id="stepNext">${STEPS[step][3]}${SUB("next")}</button></div>`;
   $("view").innerHTML=`
     <article class="lesson">
       <div class="lesson-head ${l.stage}">
-        <span class="eyebrow">${l.stage.toUpperCase()} · ${g.name}</span>
-        <h2>${l.title}</h2>${TR(l.sd,l.dv)}
+        <span class="eyebrow">${l.stage.toUpperCase()} · ${g.name} ${TR(g.sd,g.dv)}</span>
+        <h2>${l.title}</h2>${LT(cur)}
       </div>
       ${stepper}
       <div class="lesson-body">${body}</div>
       ${nav}
       <div class="lesson-foot">
         <div class="toolbar">
-          <button class="tool" data-t="repeat"><span class="i">↺</span>Repeat</button>
-          <button class="tool q" data-t="quiz"><span class="i">?</span>Quiz</button>
-          <button class="tool" data-t="pause"><span class="i">❚❚</span>Pause</button>
-          <button class="tool" data-t="next" ${cur===LESSONS.length-1?"disabled":""}><span class="i">→</span>Skip</button>
+          <button class="tool" data-t="repeat"><span class="i">↺</span>Repeat<span class="tsub">${S(SD.repeat[0])}<br>${D(SD.repeat[1])}</span></button>
+          <button class="tool" data-t="quiz"><span class="i">?</span>Quiz<span class="tsub">${S(SD.quiz[0])}<br>${D(SD.quiz[1])}</span></button>
+          <button class="tool" data-t="pause"><span class="i">❚❚</span>Pause<span class="tsub">${S(SD.pause[0])}<br>${D(SD.pause[1])}</span></button>
+          <button class="tool" data-t="next" ${cur===LESSONS.length-1?"disabled":""}><span class="i">→</span>Skip<span class="tsub">${S(SD.next[0])}<br>${D(SD.next[1])}</span></button>
         </div>
       </div>
     </article>`;
@@ -1513,7 +1750,7 @@ function readerScreen(){
   const inp=$("rdIn");
   const draw=()=>{
     readerText=inp.value;
-    const words=readerText.split(/\s+/).filter(w=>/[ऀ-ॿ]/.test(w));
+    const words=readerText.split(/\s+/).map(w=>w.replace(/[।॥,.?!;:"'()]/g,"")).filter(w=>/[ऀ-ॿ]/.test(w));
     if(!words.length){ $("rdOut").innerHTML=readerText.trim()?`<p class="muted">No Devanagari letters found. Try pasting Sindhi written in Devanagari.</p>`:""; return; }
     $("rdOut").innerHTML=`<div class="card"><span class="eyebrow">In Arabic script</span><p class="rd-ar" dir="rtl" lang="sd">${dvText(readerText,readerZabar).replace(/</g,"&lt;").replace(/\n/g,"<br>")}</p></div>
       <div class="card"><span class="eyebrow">Word by word · tap a word</span>
@@ -1557,18 +1794,18 @@ function reviewScreen(){
     const still=weakLetters().slice(0,6);
     $("view").innerHTML=`<div class="quiz review-box"><div class="q-end"><span class="score">${review.score} / ${n}</span><p>${msg}</p>
       ${still.length?`<p class="muted">Still to practice:</p>${letterChips(still)}`:`<p class="muted">No weak letters right now. Lovely.</p>`}
-      <div class="row"><button class="btn quizb" id="rAgain">Review again</button><button class="btn primary" id="rHome">Back to home</button></div></div></div>`;
+      <div class="row"><button class="btn quizb" id="rAgain">Review again${SUB("again")}</button><button class="btn primary" id="rHome">Back to home${SUB("home")}</button></div></div></div>`;
     $("rAgain").onclick=startReview; $("rHome").onclick=()=>{ stack=[]; show("home",false); };
     return;
   }
   const q=review.qs[review.i];
   $("view").innerHTML=`<div class="quiz review-box">
-    <div class="quiz-top"><b>Quick review</b> <span>${review.i+1} of ${n} · Score ${review.score}</span></div>
+    <div class="quiz-top"><div><b>Quick review</b>${TR(...SD.review)}</div><span class="mchip">${review.i+1} of ${n} · ✓ ${review.score}</span></div>
     <div class="q-prompt">${q.flip?S(q.a):q.d}</div>
-    <p class="q-ask">${q.flip?"Which Devanagari letter is this?":"Which one is the same in Arabic script?"}</p>
+    <p class="q-ask">${q.flip?"Which Devanagari letter is this?":"Which one is the same in Arabic script?"}<br>${TR(...SD.same)}</p>
     <div class="q-opts">${q.opts.map((o,k)=>`<button class="q-opt${q.flip?" dev-opt":""}" data-k="${k}" ${q.flip?"":'dir="rtl" lang="sd"'}>${q.flip?LONE(o.d):o.a}</button>`).join("")}</div>
     <p class="q-msg" id="rMsg"></p>
-    <div class="row" style="justify-content:flex-end"><button class="btn primary" id="rNext" hidden>${review.i===n-1?"See my score":"Next →"}</button></div>
+    <div class="row" style="justify-content:flex-end"><button class="btn primary" id="rNext" hidden>${review.i===n-1?`See my score${SUB("score")}`:`Next →${SUB("next")}`}</button></div>
   </div>`;
   document.querySelectorAll(".q-opt").forEach(b=>b.onclick=()=>{
     if(review.answered) return; review.answered=true;
@@ -1585,14 +1822,36 @@ function reviewScreen(){
 /* Settings: text size, calm mode, guide, reset. */
 function settingsScreen(){
   renderBar("Settings");
-  $("view").innerHTML=`<h2>Settings</h2>
-    <div class="card"><h3>Text size</h3>
+  const many=profiles.list.length>1;
+  $("view").innerHTML=`<div><h2>Settings</h2>${TR(...SD.settings)}</div>
+    <div class="card"><div><h3>Who's learning</h3>${TR(...SD.learners)}</div>
+      <p class="muted">Several people can learn on this phone. Each person keeps their own lessons, progress and text size.</p>
+      <div class="who-list small">${profiles.list.map(x=>`<div class="who-row" id="row-${x.id}">${avatar(x)}
+        <span class="who-t"><b>${esc(personName(x))}</b><small>${x.id===profiles.active?"Learning now · ":""}${peekDone(x.id)} of ${LESSONS.length} lessons</small></span>
+        <span class="who-acts">${x.id!==profiles.active?`<button class="mini" data-act="use" data-id="${x.id}">Switch</button>`:""}<button class="mini" data-act="ren" data-id="${x.id}">Edit</button>${many?`<button class="mini" data-act="del" data-id="${x.id}">Remove</button>`:""}</span></div>`).join("")}</div>
+      <div id="addBox"><button class="btn soft big" id="addPerson">+ Add a person${SUB("add")}</button></div>
+    </div>
+    <div class="card"><div><h3>Text size</h3>${TR(...SD.size)}</div>
       <div class="seg">${[["m","Normal",1],["l","Large",1.2],["xl","Extra large",1.4]].map(([k,t,z])=>`<button class="seg-b${settings.size===k?" on":""}" data-size="${k}" aria-pressed="${settings.size===k}"><span style="font-size:${z}rem">Aa</span>${t}</button>`).join("")}</div></div>
-    <div class="card"><div class="set-row"><div><h3>Calm mode</h3><p class="muted">No animations and no vibration. Everything stays still.</p></div>
+    <div class="card"><div class="set-row"><div><h3>Calm mode</h3>${TR(...SD.calm)}<p class="muted">No animations and no vibration. Everything stays still.</p></div>
       <button class="switch${settings.calm?" on":""}" id="calmBtn" role="switch" aria-checked="${!!settings.calm}" aria-label="Calm mode"><span></span></button></div></div>
-    <div class="card"><h3>The guide</h3><p class="muted">See the 3 short intro pages again.</p><button class="btn soft big" id="setGuide">Open the guide →</button></div>
-    <div class="card"><h3>Start over</h3><p class="muted">Clears your finished lessons and your place. Your settings stay.</p><div id="resetBox"><button class="btn big" id="resetBtn">Reset my progress</button></div></div>
+    <div class="card"><div><h3>The guide</h3>${TR(...SD.guide)}</div><p class="muted">See the 3 short intro pages again.</p><button class="btn soft big" id="setGuide">Open the guide →</button></div>
+    <div class="card"><div><h3>Start over</h3>${TR(...SD.over)}</div><p class="muted">Clears ${many?`<b>${esc(personName())}'s</b>`:"your"} finished lessons and place. Settings stay.</p><div id="resetBox"><button class="btn big" id="resetBtn">Reset my progress</button></div></div>
     <p class="foot-name"><button class="frog-btn small" aria-label="Dedar means frog. Tap me.">${FROG}</button>Dedar · version ${APP_VERSION}</p>`;
+  $("addPerson").onclick=()=>addForm("addBox");
+  document.querySelectorAll(".mini").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.id, x=profiles.list.find(y=>y.id===id), row=$("row-"+id);
+    if(b.dataset.act==="use"){ switchTo(id); toast(`Now learning: ${personName()}`); }
+    else if(b.dataset.act==="ren"){
+      row.innerHTML=`<div class="add-form"><label for="ren-${id}">New name</label><input id="ren-${id}" class="name-in" maxlength="20" value="${esc(x.name)}" autocomplete="off"><span class="tp-label">Topi</span>${topiPicker("tpRen",topiOf(x))}<div class="row"><button class="btn primary" id="renYes">Save</button><button class="btn" id="renNo">Cancel</button></div></div>`;
+      $("ren-"+id).focus(); $("renNo").onclick=settingsScreen;
+      bindPicker("tpRen");
+      $("renYes").onclick=()=>{ x.name=$("ren-"+id).value.trim().slice(0,20); x.t=+$("tpRen").dataset.v; saveProfiles(); settingsScreen(); };
+    } else {
+      row.innerHTML=`<div class="add-form"><p><b>Remove ${esc(personName(x))}?</b> Their lessons and progress will be deleted.</p><div class="row"><button class="btn primary" id="delYes">Yes, remove</button><button class="btn" id="delNo">Cancel</button></div></div>`;
+      $("delNo").onclick=settingsScreen; $("delYes").onclick=()=>{ removePerson(id); settingsScreen(); };
+    }
+  });
   document.querySelectorAll(".seg-b").forEach(b=>b.onclick=()=>{ settings.size=b.dataset.size; save(); applySettings(); settingsScreen(); });
   $("calmBtn").onclick=()=>{ settings.calm=!settings.calm; save(); applySettings(); settingsScreen(); };
   $("setGuide").onclick=()=>show("tour-plan");
@@ -1606,8 +1865,8 @@ function settingsScreen(){
 
 function render(){
   renderNav();
-  document.body.classList.toggle("first", screen==="home" && firstRun());
-  if(screen==="home") (firstRun()?welcomeScreen():homeScreen());
+  document.body.classList.toggle("first", screen==="home" && (needPick()||firstRun()));
+  if(screen==="home") (needPick()?whoScreen():firstRun()?welcomeScreen():homeScreen());
   else if(screen==="review") reviewScreen();
   else if(screen==="settings") settingsScreen();
   else if(screen==="reader") readerScreen();
